@@ -1,0 +1,197 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #fabf18 white;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  *::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: white;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #fabf18;
+    border-radius: 20px;
+    border: 1px #fabf18 white;
+  }
+
+  @font-face {
+    font-family: "Metropolis";
+    font-style: normal;
+    font-weight: 400;
+    src: url("/fonts/Metropolis-Regular.woff") format("woff");
+  }
+
+  @font-face {
+    font-family: "Metropolis";
+    font-style: normal;
+    font-weight: 300;
+    src: url("/fonts/Metropolis-Light.woff") format("woff");
+  }
+
+  @font-face {
+    font-family: "Metropolis";
+    font-style: normal;
+    font-weight: 500;
+    src: url("/fonts/Metropolis-Medium.woff") format("woff");
+  }
+
+  @font-face {
+    font-family: "Metropolis";
+    font-style: normal;
+    font-weight: 600;
+    src: url("/fonts/Metropolis-SemiBold.woff") format("woff");
+  }
+
+  @font-face {
+    font-family: "Metropolis";
+    font-style: normal;
+    font-weight: 700;
+    src: url("/fonts/Metropolis-Bold.woff") format("woff");
+  }
+
+  @font-face {
+    font-family: "Metropolis";
+    font-style: italic;
+    font-weight: 700;
+    src: url("/fonts/Metropolis-BoldItalic.woff") format("woff");
+  }
+
+  @font-face {
+    font-family: "Metropolis";
+    font-style: italic;
+    font-weight: 500;
+    src: url("/fonts/Metropolis-MediumItalic.woff") format("woff");
+  }
+
+  @font-face {
+    font-family: "Metropolis";
+    font-style: italic;
+    font-weight: 600;
+    src: url("/fonts/Metropolis-SemiBoldItalic.woff") format("woff");
+  }
+
+  @font-face {
+    font-family: "Metropolis";
+    font-style: normal;
+    font-weight: 800;
+    src: url("/fonts/Metropolis-ExtraBold.woff") format("woff");
+  }
+
+  @font-face {
+    font-family: "Metropolis";
+    font-style: italic;
+    font-weight: 800;
+    src: url("/fonts/Metropolis-ExtraBoldItalic.woff") format("woff");
+  }
+
+  @font-face {
+    font-family: "Metropolis";
+    font-style: normal;
+    font-weight: 900;
+    src: url("/fonts/Metropolis-Black.woff") format("woff");
+  }
+
+  @font-face {
+    font-family: "Metropolis";
+    font-style: italic;
+    font-weight: 900;
+    src: url("/fonts/Metropolis-BlackItalic.woff") format("woff");
+  }
+
+  h2 {
+    @apply text-4xl font-extrabold mb-4;
+  }
+
+  p {
+    @apply text-xl font-medium mb-4 leading-snug;
+  }
+}
+
+@layer components {
+  .atag {
+    @apply text-orange-600;
+  }
+
+  .pageH1 {
+    @apply lg:text-7xl text-5xl mt-6 md:text-6xl font-extrabold mb-8;
+  }
+
+  .card {
+    @apply w-full h-full shadow-md py-10 px-2 rounded-lg border border-gray-200 hover:border-orange-500  ease-in duration-200 cursor-pointer;
+  }
+
+  .linkHover li {
+    position: relative;
+  }
+
+  .linkHover li:after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 3px;
+    display: block;
+    margin-top: 0px;
+    right: 0;
+    background: #000;
+    transition: width 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+    -webkit-transition: width 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+  }
+
+  .linkHover li:hover:after {
+    width: 100%;
+    left: 0;
+    background: #000;
+  }
+
+  .currentLink {
+    position: relative;
+  }
+
+  .currentLink:after {
+    content: "";
+    position: absolute;
+    height: 3px;
+    display: block;
+    margin-top: 0px;
+    right: 0;
+    background: #000;
+    width: 100% !important;
+    left: 0;
+  }
+
+  .xbtn {
+    @apply m-auto md:ml-0;
+  }
+
+  .pclamp {
+    padding: 1.5rem clamp(1rem, 5.5vw, 6rem);
+  }
+
+  .hclap {
+    font-size: clamp(2rem, 4vw, 3rem);
+  }
+
+  .easeCustom {
+    transition: cubic-bezier(0.77, 0.2, 0.05, 1) 0s;
+  }
+  .menuHamburger {
+    @apply grid relative z-10 w-10 h-10 cursor-pointer before:content-[''] before:w-10 before:h-[5px] before:top-[30%] before:bg-black before:absolute before:will-change-transform before:easeCustom before:z-20 after:content-[''] after:w-[25px] after:h-[5px] after:bottom-[30%] after:bg-black after:absolute after:will-change-transform after:easeCustom after:z-30 before:duration-500 after:duration-500 place-items-end items-center;
+  }
+
+  .menuCross {
+    @apply grid relative z-10 w-10 h-10 cursor-pointer before:content-[''] before:w-[35px] before:h-[5px] before:top-[24%] before:bg-black before:absolute before:will-change-transform before:easeCustom before:z-20 before:-rotate-45 before:translate-y-[7.75px] after:content-[''] after:w-[35px] after:h-[5px] after:bottom-[24%] after:bg-black after:absolute after:will-change-transform after:easeCustom after:z-30 after:rotate-45 after:-translate-y-[8px] before:duration-500 after:duration-500 place-items-end items-center;
+  }
+}
