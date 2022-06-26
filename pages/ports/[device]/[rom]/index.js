@@ -81,29 +81,26 @@ const Rom = ({ rom, device, ports }) => {
 };
 
 export async function getServerSideProps(context) {
-  const device = context.params.device;
-  const rom = context.params.rom;
-
-  const romRes = await axios.get(
-    `${process.env.REACT_APP_API_URL}/roms/${rom}`
-  );
-  const romData = JSON.parse(JSON.stringify(romRes.data)).data;
-
-  const deviceRes = await axios.get(
-    `${process.env.REACT_APP_API_URL}/devices/${device}`
-  );
-  const deviceData = JSON.parse(JSON.stringify(deviceRes.data)).data;
+  let device = context.params.device;
+  let rom = context.params.rom;
 
   const portsRes = await axios.get(
-    `${process.env.REACT_APP_API_URL}/miuiroms/${rom}/${device}`
+    `${process.env.REACT_APP_API_URL}/miuiroms/${rom}/${device}`,
+    { responseType: "json" }
   );
-  const portsData = JSON.parse(JSON.stringify(portsRes.data)).data;
+  if (portsRes.status !== 200) {
+    context.res.statusCode = 404;
+    return { props: {} };
+  }
+  rom = portsRes.data.data.rom;
+  device = portsRes.data.data.device;
+  let ports = portsRes.data.data.miuiroms;
 
   return {
     props: {
-      rom: romData,
-      device: deviceData,
-      ports: portsData,
+      rom,
+      device,
+      ports,
     },
   };
 }

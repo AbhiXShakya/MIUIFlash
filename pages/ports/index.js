@@ -5,7 +5,6 @@ import Link from "next/link";
 import { parseCodename } from "../../utils/helpers";
 
 export default function Ports({ data }) {
-  console.log(data);
   return (
     <>
       <div className="mb-12">
@@ -42,8 +41,10 @@ export default function Ports({ data }) {
 }
 
 export async function getServerSideProps() {
-  const res = await axios.get(`${process.env.REACT_APP_API_URL}/devices`);
-  const data = JSON.parse(JSON.stringify(res.data)).data;
+  const res = await axios.get(`${process.env.REACT_APP_API_URL}/devices`, {
+    responseType: "json",
+  });
+  const data = res.data.data;
 
   return { props: { data } };
 }

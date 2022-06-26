@@ -53,20 +53,20 @@ const Device = ({ deviceRoms, device }) => {
 };
 
 export async function getServerSideProps(context) {
-  const device = context.params.device;
-  const res = await axios.get(`${process.env.REACT_APP_API_URL}/roms`);
-  const data = JSON.parse(JSON.stringify(res.data)).data.filter((item) =>
-    item.devices.includes(device)
+  let device = context.params.device;
+  const romsRes = await axios.get(
+    `${process.env.REACT_APP_API_URL}/roms/${device}`,
+    {
+      responseType: "json",
+    }
   );
-  const deviceRes = await axios.get(
-    `${process.env.REACT_APP_API_URL}/devices/${device}`
-  );
-  const deviceData = JSON.parse(JSON.stringify(deviceRes.data)).data;
+  device = romsRes.data.data.device;
+  const deviceRoms = romsRes.data.data.roms;
 
   return {
     props: {
-      deviceRoms: data,
-      device: deviceData,
+      deviceRoms,
+      device,
     },
   };
 }
