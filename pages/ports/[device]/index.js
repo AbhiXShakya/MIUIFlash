@@ -53,23 +53,30 @@ const Device = ({ deviceRoms, device }) => {
 };
 
 export async function getStaticProps(context) {
-  let device = context.params.device;
-  const romsRes = await axios.get(
-    `${process.env.REACT_APP_API_URL}/roms/${device}`,
-    {
-      responseType: "json",
-    }
-  );
-  device = romsRes.data.data.device;
-  const deviceRoms = romsRes.data.data.roms;
+  try {
+    let device = context.params.device;
+    const romsRes = await axios.get(
+      `${process.env.REACT_APP_API_URL}/roms/${device}`,
+      {
+        responseType: "json",
+      }
+    );
 
-  return {
-    props: {
-      deviceRoms,
-      device,
-    },
-    revalidate: 60,
-  };
+    device = romsRes.data.data.device;
+    const deviceRoms = romsRes.data.data.roms;
+
+    return {
+      props: {
+        deviceRoms,
+        device,
+      },
+      revalidate: 1,
+    };
+  } catch (e) {
+    return {
+      notFound: true,
+    };
+  }
 }
 
 export async function getStaticPaths() {

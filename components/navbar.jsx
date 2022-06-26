@@ -100,6 +100,7 @@ const Navbar = () => {
                   alt="MIUIFlash"
                   width={20}
                   height={25}
+                  priority={true}
                 />
               </span>
               H

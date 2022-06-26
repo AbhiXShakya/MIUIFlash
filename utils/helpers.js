@@ -25,7 +25,6 @@ export function parseDate(date) {
 export const objectMap = (obj, fn) => {
   const links = [];
   for (let key in obj) {
-    console.log(key);
     links.push(fn(key, obj[key]));
   }
   return links;

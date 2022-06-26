@@ -80,29 +80,59 @@ const Rom = ({ rom, device, ports }) => {
   );
 };
 
-export async function getServerSideProps(context) {
-  let device = context.params.device;
-  let rom = context.params.rom;
+export async function getStaticProps(context) {
+  try {
+    let device = context.params.device;
+    let rom = context.params.rom;
 
-  const portsRes = await axios.get(
-    `${process.env.REACT_APP_API_URL}/miuiroms/${rom}/${device}`,
-    { responseType: "json" }
-  );
-  if (portsRes.status !== 200) {
-    context.res.statusCode = 404;
-    return { props: {} };
+    const portsRes = await axios.get(
+      `${process.env.REACT_APP_API_URL}/miuiroms/${rom}/${device}`,
+      { responseType: "json" }
+    );
+
+    rom = portsRes.data.data.rom;
+    device = portsRes.data.data.device;
+    let ports = portsRes.data.data.miuiroms;
+
+    return {
+      props: {
+        rom,
+        device,
+        ports,
+      },
+      revalidate: 10,
+    };
+  } catch (e) {
+    return {
+      notFound: true,
+    };
   }
-  rom = portsRes.data.data.rom;
-  device = portsRes.data.data.device;
-  let ports = portsRes.data.data.miuiroms;
+}
 
-  return {
-    props: {
-      rom,
-      device,
-      ports,
-    },
-  };
+export async function getStaticPaths() {
+  const romsRes = await axios.get(`${process.env.REACT_APP_API_URL}/roms`, {
+    responseType: "json",
+  });
+
+  const devicesRes = await axios.get(
+    `${process.env.REACT_APP_API_URL}/devices`,
+    {
+      responseType: "json",
+    }
+  );
+
+  const devices = devicesRes.data.data;
+  const roms = romsRes.data.data;
+
+  const paths = [];
+
+  for (const device of devices) {
+    for (const rom of roms) {
+      paths.push({ params: { device: device.codename, rom: rom.romId } });
+    }
+  }
+
+  return { paths, fallback: "blocking" };
 }
 
 export default Rom;
