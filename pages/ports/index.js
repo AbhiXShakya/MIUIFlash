@@ -13,23 +13,23 @@ export default function Ports({ data }) {
       </div>
       <h2 className="text-3xl font-bold">Select Your Device</h2>
       <div className="grid grid-flow-rows place-items-center gap-6 my-14 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        {data.map((item) => (
-          <Link key={item._id} href={`/ports/${item.codename}`}>
+        {data?.map((item) => (
+          <Link key={item?._id} href={`/ports/${item?.codename}`}>
             <div className="card">
               <div className="relative w-full h-44 mb-6">
                 <Image
-                  src={item.image}
-                  alt={`MIUI Ports for ${item.name} (${parseCodename(
-                    item.codename
+                  src={item?.image}
+                  alt={`MIUI Ports for ${item?.name} (${parseCodename(
+                    item?.codename
                   )})`}
                   layout="fill"
                   objectFit="contain"
                 />
               </div>
               <div className="text-center">
-                <h3 className="font-bold text-xl">{item.name}</h3>
+                <h3 className="font-bold text-xl">{item?.name}</h3>
                 <p className="text-sm text-gray-700 mt-1 font-medium">
-                  ({parseCodename(item.codename)})
+                  ({parseCodename(item?.codename)})
                 </p>
               </div>
             </div>

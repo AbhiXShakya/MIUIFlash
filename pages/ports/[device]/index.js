@@ -8,9 +8,9 @@ const Device = ({ deviceRoms, device }) => {
   return (
     <>
       <div className="mb-12">
-        <h1 className="pageH1 mb-4">{parseCodename(device.codename)}</h1>
+        <h1 className="pageH1 mb-4">{parseCodename(device?.codename)}</h1>
         <h2 className="text-2xl md:text-4xl mb-4 text-gray-800">
-          ({titleCase(device.name)})
+          ({titleCase(device?.name)})
         </h2>
         <p className="mb-10 text-sm font-semibold text-orange-500">
           <Link href="/">Home</Link>
@@ -18,20 +18,23 @@ const Device = ({ deviceRoms, device }) => {
           <Link href="/ports">Ports</Link>
         </p>
         <p>
-          All Ported Roms for {titleCase(device.name)} (
-          {parseCodename(device.codename)}) are listed below
+          All Ported Roms for {titleCase(device?.name)} (
+          {parseCodename(device?.codename)}) are listed below
         </p>
       </div>
       <h2 className="text-3xl font-bold mb-0">Supported Roms</h2>
       <div className="grid grid-flow-rows place-items-center gap-6 my-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        {deviceRoms.map((rom) => (
-          <Link key={rom._id} href={`/ports/${device.codename}/${rom.romId}`}>
+        {deviceRoms?.map((rom) => (
+          <Link
+            key={rom?._id}
+            href={`/ports/${device?.codename}/${rom?.romId}`}
+          >
             <div className="card">
               <div className="relative w-full h-44 mb-6">
                 <Image
-                  src={rom.image}
-                  alt={`${rom.name} Ports for ${device.name} (${parseCodename(
-                    device.codename
+                  src={rom?.image}
+                  alt={`${rom?.name} Ports for ${device?.name} (${parseCodename(
+                    device?.codename
                   )})`}
                   layout="fill"
                   objectFit="contain"
@@ -39,9 +42,9 @@ const Device = ({ deviceRoms, device }) => {
                 />
               </div>
               <div className="text-center">
-                <h3 className="font-bold text-xl">{rom.name}</h3>
+                <h3 className="font-bold text-xl">{rom?.name}</h3>
                 <p className="text-sm text-gray-700 mt-1 font-medium">
-                  (by {rom.owner})
+                  (by {rom?.owner})
                 </p>
               </div>
             </div>
@@ -54,12 +57,25 @@ const Device = ({ deviceRoms, device }) => {
 
 export async function getStaticProps(context) {
   let device = context.params.device;
-  const romsRes = await axios.get(
-    `${process.env.REACT_APP_API_URL}/roms/${device}`,
-    {
-      responseType: "json",
-    }
-  );
+
+  let romsRes = {};
+
+  try {
+    romsRes = await axios.get(
+      `${process.env.REACT_APP_API_URL}/roms/${device}`,
+      {
+        responseType: "json",
+      }
+    );
+  } catch (error) {
+    console.log(error.message);
+    romsRes = await axios.get(
+      `${process.env.REACT_APP_API_URL}/roms/${device}`,
+      {
+        responseType: "json",
+      }
+    );
+  }
 
   if (romsRes.data.success == false) {
     return {

@@ -18,10 +18,10 @@ const SingleRom = ({ rom, device, port }) => {
           <div className="mb-9 m-auto md:hidden relative">
             <Image
               className="rounded-lg"
-              src={port.image}
-              alt={`${rom.name} ${port.miuiVersion} Port for ${
-                device.name
-              } (${parseCodename(device.codename)})`}
+              src={port?.image}
+              alt={`${rom?.name} ${port?.miuiVersion} Port for ${
+                device?.name
+              } (${parseCodename(device?.codename)})`}
               width={1600}
               height={900}
               priority={true}
@@ -29,10 +29,10 @@ const SingleRom = ({ rom, device, port }) => {
           </div>
           <div className="m-auto translate-x-28 hidden relative w-56 h-56 lg:block">
             <Image
-              src={rom.image}
-              alt={`${rom.name} ${port.miuiVersion} Port for ${
-                device.name
-              } (${parseCodename(device.codename)})`}
+              src={rom?.image}
+              alt={`${rom?.name} ${port?.miuiVersion} Port for ${
+                device?.name
+              } (${parseCodename(device?.codename)})`}
               layout="fill"
               objectFit="contain"
               priority={true}
@@ -40,22 +40,22 @@ const SingleRom = ({ rom, device, port }) => {
           </div>
           <div>
             <h1 className="font-extrabold text-4xl mb-4">
-              {rom.name}&nbsp;{port.miuiVersion}
+              {rom?.name}&nbsp;{port?.miuiVersion}
             </h1>
             <h2 className="text-2xl md:text-4xl mb-4 text-gray-800">
-              ({parseCodename(device.codename)})
+              ({parseCodename(device?.codename)})
             </h2>
             <p className="mb-10 text-sm font-semibold text-orange-500">
               <Link href="/">Home</Link>
               <span className="text-gray-700">&nbsp;&gt;&nbsp;</span>
               <Link href="/ports">Ports</Link>
               <span className="text-gray-700">&nbsp;&gt;&nbsp;</span>
-              <Link href={`/ports/${device.codename}`}>
-                {titleCase(device.codename)}
+              <Link href={`/ports/${device?.codename}`}>
+                {titleCase(device?.codename)}
               </Link>
               <span className="text-gray-700">&nbsp;&gt;&nbsp;</span>
-              <Link href={`/ports/${device.codename}/${rom.romId}`}>
-                {titleCase(rom.name)}
+              <Link href={`/ports/${device?.codename}/${rom?.romId}`}>
+                {titleCase(rom?.name)}
               </Link>
             </p>
             <p>All Details for the ROM is Listed Below</p>
@@ -70,7 +70,7 @@ const SingleRom = ({ rom, device, port }) => {
                             MIUI Version
                           </td>
                           <td className="text-lg text-gray-900 font-medium px-2 py-4 whitespace-nowrap">
-                            {port.miuiVersion}
+                            {port?.miuiVersion}
                           </td>
                         </tr>
                         <tr className="border-b">
@@ -78,7 +78,7 @@ const SingleRom = ({ rom, device, port }) => {
                             Android Version
                           </td>
                           <td className="text-lg text-gray-900 font-medium px-2 py-4 whitespace-nowrap">
-                            {port.androidVersion}
+                            {port?.androidVersion}
                           </td>
                         </tr>
                         <tr className="border-b">
@@ -86,7 +86,7 @@ const SingleRom = ({ rom, device, port }) => {
                             Device
                           </td>
                           <td className="text-lg text-gray-900 font-medium px-2 py-4 whitespace-nowrap">
-                            {parseCodename(device.codename)}
+                            {parseCodename(device?.codename)}
                           </td>
                         </tr>
                         <tr className="border-b">
@@ -94,7 +94,7 @@ const SingleRom = ({ rom, device, port }) => {
                             Maintainer
                           </td>
                           <td className="text-lg text-gray-900 font-medium px-2 py-4 whitespace-nowrap">
-                            {port.maintainer}
+                            {port?.maintainer}
                           </td>
                         </tr>
                         <tr className="border-b">
@@ -102,7 +102,7 @@ const SingleRom = ({ rom, device, port }) => {
                             Status
                           </td>
                           <td className="text-lg text-gray-900 font-medium px-2 py-4 whitespace-nowrap">
-                            {port.status}
+                            {port?.status}
                           </td>
                         </tr>
                         <tr className="border-b">
@@ -110,7 +110,7 @@ const SingleRom = ({ rom, device, port }) => {
                             Updated
                           </td>
                           <td className="text-lg text-gray-900 font-medium px-2 py-4 whitespace-nowrap">
-                            {parseDate(port.updatedAt)}
+                            {parseDate(port?.updatedAt)}
                           </td>
                         </tr>
                       </tbody>
@@ -181,7 +181,7 @@ const SingleRom = ({ rom, device, port }) => {
         </div>
         <div className="mt-14">
           <h3 className="mt-8 font-bold text-3xl mb-4">Downloads:</h3>
-          {objectMap(port.downloadLinks, (name, link) => {
+          {objectMap(port?.downloadLinks, (name, link) => {
             return <AButton key={name} txt={name} href={link} />;
           })}
         </div>
@@ -194,11 +194,20 @@ export async function getStaticProps(context) {
   let device = context.params.device;
   let rom = context.params.rom;
   const singleRom = context.params.singleRom;
+  let portRes = {};
 
-  const portRes = await axios.get(
-    `${process.env.REACT_APP_API_URL}/miuiroms/${rom}/${device}/${singleRom}`,
-    { responseType: "json" }
-  );
+  try {
+    portRes = await axios.get(
+      `${process.env.REACT_APP_API_URL}/miuiroms/${rom}/${device}/${singleRom}`,
+      { responseType: "json" }
+    );
+  } catch (error) {
+    console.log(error.message);
+    portRes = await axios.get(
+      `${process.env.REACT_APP_API_URL}/miuiroms/${rom}/${device}/${singleRom}`,
+      { responseType: "json" }
+    );
+  }
 
   if (portRes.data.success == false) {
     return {
@@ -232,9 +241,9 @@ export async function getStaticPaths() {
 
   const paths = miuiroms.map((miuirom) => ({
     params: {
-      device: miuirom.device,
-      rom: miuirom.rom,
-      singleRom: miuirom.slug,
+      device: miuirom?.device,
+      rom: miuirom?.rom,
+      singleRom: miuirom?.slug,
     },
   }));
 
