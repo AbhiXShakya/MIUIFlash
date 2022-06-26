@@ -114,21 +114,18 @@ export async function getStaticPaths() {
     responseType: "json",
   });
 
-  const devicesRes = await axios.get(
-    `${process.env.REACT_APP_API_URL}/devices`,
-    {
-      responseType: "json",
-    }
-  );
-
-  const devices = devicesRes.data.data;
   const roms = romsRes.data.data;
 
   const paths = [];
 
-  for (const device of devices) {
-    for (const rom of roms) {
-      paths.push({ params: { device: device.codename, rom: rom.romId } });
+  for (const rom of roms) {
+    for (const device of rom.devices) {
+      paths.push({
+        params: {
+          device: device,
+          rom: rom.romId,
+        },
+      });
     }
   }
 
