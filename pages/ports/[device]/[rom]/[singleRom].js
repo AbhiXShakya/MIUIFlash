@@ -191,32 +191,33 @@ const SingleRom = ({ rom, device, port }) => {
 };
 
 export async function getStaticProps(context) {
-  try {
-    let device = context.params.device;
-    let rom = context.params.rom;
-    const singleRom = context.params.singleRom;
+  let device = context.params.device;
+  let rom = context.params.rom;
+  const singleRom = context.params.singleRom;
 
-    const portRes = await axios.get(
-      `${process.env.REACT_APP_API_URL}/miuiroms/${rom}/${device}/${singleRom}`,
-      { responseType: "json" }
-    );
-    rom = portRes.data.data.rom;
-    device = portRes.data.data.device;
-    const port = portRes.data.data.miuirom;
+  const portRes = await axios.get(
+    `${process.env.REACT_APP_API_URL}/miuiroms/${rom}/${device}/${singleRom}`,
+    { responseType: "json" }
+  );
 
-    return {
-      props: {
-        rom,
-        device,
-        port,
-      },
-      revalidate: 120,
-    };
-  } catch (error) {
+  if (portRes.data.success == false) {
     return {
       notFound: true,
     };
   }
+
+  rom = portRes.data.data.rom;
+  device = portRes.data.data.device;
+  const port = portRes.data.data.miuirom;
+
+  return {
+    props: {
+      rom,
+      device,
+      port,
+    },
+    revalidate: 120,
+  };
 }
 
 export async function getStaticPaths() {
