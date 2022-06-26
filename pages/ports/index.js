@@ -40,11 +40,12 @@ export default function Ports({ data }) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const res = await axios.get(`${process.env.REACT_APP_API_URL}/devices`, {
     responseType: "json",
   });
+
   const data = res.data.data;
 
-  return { props: { data } };
+  return { props: { data }, revalidate: 60 };
 }

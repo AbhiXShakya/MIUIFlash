@@ -52,7 +52,7 @@ const Device = ({ deviceRoms, device }) => {
   );
 };
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   let device = context.params.device;
   const romsRes = await axios.get(
     `${process.env.REACT_APP_API_URL}/roms/${device}`,
@@ -68,7 +68,21 @@ export async function getServerSideProps(context) {
       deviceRoms,
       device,
     },
+    revalidate: 60,
   };
+}
+
+export async function getStaticPaths() {
+  const res = await axios.get(`${process.env.REACT_APP_API_URL}/devices`, {
+    responseType: "json",
+  });
+  const devices = res.data.data;
+
+  const paths = devices.map((post) => ({
+    params: { device: post.codename },
+  }));
+
+  return { paths, fallback: "blocking" };
 }
 
 export default Device;
