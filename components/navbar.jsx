@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Social from "./social";
 import axios from "axios";
+import { motion } from "framer-motion";
+import { animateNav, easing } from "../utils/helpers";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,10 +20,15 @@ const Navbar = () => {
   }, [isOpen]);
 
   return (
-    <header>
+    <motion.header
+      initial="initial"
+      animate="animate"
+      variants={animateNav}
+      exit={{ y: "-30%", opacity: 0, transition: { ease: easing } }}
+    >
       <div
         className={`absolute w-full h-[120%] duration-[0.8s] z-50 easeCustom ${
-          isOpen ? "translate-y-0" : "-translate-y-[120vh]"
+          isOpen ? "translate-y-0" : "-translate-y-[200vh]"
         } bg-white pclamp`}
       >
         <div className="translate-y-[34%]">
@@ -155,7 +162,7 @@ const Navbar = () => {
           ></div>
         </div>
       </nav>
-    </header>
+    </motion.header>
   );
 };
 

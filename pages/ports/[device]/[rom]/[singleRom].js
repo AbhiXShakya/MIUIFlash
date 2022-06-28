@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import {
   objectMap,
   parseCodename,
@@ -7,15 +6,25 @@ import {
 } from "../../../../utils/helpers";
 import Link from "next/link";
 import Image from "next/image";
-import { AButton } from "../../../../components/buttons";
+import { AButton } from "../../../../components";
 import axios from "axios";
+import { motion } from "framer-motion";
+import {
+  animateDown,
+  animateExit,
+  animateUp,
+  easing,
+} from "../../../../utils/helpers";
 
 const SingleRom = ({ rom, device, port }) => {
   return (
-    <>
+    <motion.div initial="initial" animate="animate">
       <div className="mb-12">
         <div className="lg:items-center lg:flex lg:flex-row-reverse lg:justify-between">
-          <div className="mb-9 m-auto md:hidden relative">
+          <motion.div
+            variants={animateUp}
+            className="mb-9 m-auto md:hidden relative"
+          >
             <Image
               className="rounded-lg"
               src={port?.image}
@@ -26,8 +35,11 @@ const SingleRom = ({ rom, device, port }) => {
               height={900}
               priority={true}
             />
-          </div>
-          <div className="m-auto translate-x-28 hidden relative w-56 h-56 lg:block">
+          </motion.div>
+          <motion.div
+            variants={animateUp}
+            className="m-auto translate-x-28 hidden relative w-56 h-56 lg:block"
+          >
             <Image
               src={rom?.image}
               alt={`${rom?.name} ${port?.miuiVersion} Port for ${
@@ -37,88 +49,92 @@ const SingleRom = ({ rom, device, port }) => {
               objectFit="contain"
               priority={true}
             />
-          </div>
+          </motion.div>
           <div>
-            <h1 className="font-extrabold text-4xl mb-4">
-              {rom?.name}&nbsp;{port?.miuiVersion}
-            </h1>
-            <h2 className="text-2xl md:text-4xl mb-4 text-gray-800">
-              ({parseCodename(device?.codename)})
-            </h2>
-            <p className="mb-10 text-sm font-semibold text-orange-500">
-              <Link href="/">Home</Link>
-              <span className="text-gray-700">&nbsp;&gt;&nbsp;</span>
-              <Link href="/ports">Ports</Link>
-              <span className="text-gray-700">&nbsp;&gt;&nbsp;</span>
-              <Link href={`/ports/${device?.codename}`}>
-                {titleCase(device?.codename)}
-              </Link>
-              <span className="text-gray-700">&nbsp;&gt;&nbsp;</span>
-              <Link href={`/ports/${device?.codename}/${rom?.romId}`}>
-                {titleCase(rom?.name)}
-              </Link>
-            </p>
-            <p>All Details for the ROM is Listed Below</p>
-            <div className="flex flex-col">
-              <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
-                <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
-                  <div className="overflow-x-auto">
-                    <table className="min-w-full">
-                      <tbody>
-                        <tr className="border-b">
-                          <td className="px-2 py-4 whitespace-nowrap text-lg font-bold text-gray-900">
-                            MIUI Version
-                          </td>
-                          <td className="text-lg text-gray-900 font-medium px-2 py-4 whitespace-nowrap">
-                            {port?.miuiVersion}
-                          </td>
-                        </tr>
-                        <tr className="border-b">
-                          <td className="px-2 py-4 whitespace-nowrap text-lg font-bold text-gray-900">
-                            Android Version
-                          </td>
-                          <td className="text-lg text-gray-900 font-medium px-2 py-4 whitespace-nowrap">
-                            {port?.androidVersion}
-                          </td>
-                        </tr>
-                        <tr className="border-b">
-                          <td className="px-2 py-4 whitespace-nowrap text-lg font-bold text-gray-900">
-                            Device
-                          </td>
-                          <td className="text-lg text-gray-900 font-medium px-2 py-4 whitespace-nowrap">
-                            {parseCodename(device?.codename)}
-                          </td>
-                        </tr>
-                        <tr className="border-b">
-                          <td className="px-2 py-4 whitespace-nowrap text-lg font-bold text-gray-900">
-                            Maintainer
-                          </td>
-                          <td className="text-lg text-gray-900 font-medium px-2 py-4 whitespace-nowrap">
-                            {port?.maintainer}
-                          </td>
-                        </tr>
-                        <tr className="border-b">
-                          <td className="px-2 py-4 whitespace-nowrap text-lg font-bold text-gray-900">
-                            Status
-                          </td>
-                          <td className="text-lg text-gray-900 font-medium px-2 py-4 whitespace-nowrap">
-                            {port?.status}
-                          </td>
-                        </tr>
-                        <tr className="border-b">
-                          <td className="px-2 py-4 whitespace-nowrap text-lg font-bold text-gray-900">
-                            Updated
-                          </td>
-                          <td className="text-lg text-gray-900 font-medium px-2 py-4 whitespace-nowrap">
-                            {parseDate(port?.updatedAt)}
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
+            <motion.div variants={animateDown}>
+              <h1 className="font-extrabold text-4xl mb-4">
+                {rom?.name}&nbsp;{port?.miuiVersion}
+              </h1>
+              <h2 className="text-2xl md:text-4xl mb-4 text-gray-800">
+                ({parseCodename(device?.codename)})
+              </h2>
+            </motion.div>
+            <motion.div variants={animateUp}>
+              <p className="mb-10 text-sm font-semibold text-orange-500">
+                <Link href="/">Home</Link>
+                <span className="text-gray-700">&nbsp;&gt;&nbsp;</span>
+                <Link href="/ports">Ports</Link>
+                <span className="text-gray-700">&nbsp;&gt;&nbsp;</span>
+                <Link href={`/ports/${device?.codename}`}>
+                  {titleCase(device?.codename)}
+                </Link>
+                <span className="text-gray-700">&nbsp;&gt;&nbsp;</span>
+                <Link href={`/ports/${device?.codename}/${rom?.romId}`}>
+                  {titleCase(rom?.name)}
+                </Link>
+              </p>
+              <p>All Details for the ROM is Listed Below</p>
+              <div className="flex flex-col">
+                <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                  <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+                    <div className="overflow-x-auto">
+                      <table className="min-w-full">
+                        <tbody>
+                          <tr className="border-b">
+                            <td className="px-2 py-4 whitespace-nowrap text-lg font-bold text-gray-900">
+                              MIUI Version
+                            </td>
+                            <td className="text-lg text-gray-900 font-medium px-2 py-4 whitespace-nowrap">
+                              {port?.miuiVersion}
+                            </td>
+                          </tr>
+                          <tr className="border-b">
+                            <td className="px-2 py-4 whitespace-nowrap text-lg font-bold text-gray-900">
+                              Android Version
+                            </td>
+                            <td className="text-lg text-gray-900 font-medium px-2 py-4 whitespace-nowrap">
+                              {port?.androidVersion}
+                            </td>
+                          </tr>
+                          <tr className="border-b">
+                            <td className="px-2 py-4 whitespace-nowrap text-lg font-bold text-gray-900">
+                              Device
+                            </td>
+                            <td className="text-lg text-gray-900 font-medium px-2 py-4 whitespace-nowrap">
+                              {parseCodename(device?.codename)}
+                            </td>
+                          </tr>
+                          <tr className="border-b">
+                            <td className="px-2 py-4 whitespace-nowrap text-lg font-bold text-gray-900">
+                              Maintainer
+                            </td>
+                            <td className="text-lg text-gray-900 font-medium px-2 py-4 whitespace-nowrap">
+                              {port?.maintainer}
+                            </td>
+                          </tr>
+                          <tr className="border-b">
+                            <td className="px-2 py-4 whitespace-nowrap text-lg font-bold text-gray-900">
+                              Status
+                            </td>
+                            <td className="text-lg text-gray-900 font-medium px-2 py-4 whitespace-nowrap">
+                              {port?.status}
+                            </td>
+                          </tr>
+                          <tr className="border-b">
+                            <td className="px-2 py-4 whitespace-nowrap text-lg font-bold text-gray-900">
+                              Updated
+                            </td>
+                            <td className="text-lg text-gray-900 font-medium px-2 py-4 whitespace-nowrap">
+                              {parseDate(port?.updatedAt)}
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
         <h3 className="font-bold text-3xl mt-12 mb-4">Supported Devices:</h3>
@@ -129,7 +145,10 @@ const SingleRom = ({ rom, device, port }) => {
             </li>
           ))}
         </ul>
-        <div className="mt-10 mb-10 md:flex justify-between flex-wrap">
+        <motion.div
+          variants={animateDown}
+          className="mt-10 mb-10 md:flex justify-between flex-wrap"
+        >
           <div className="md:max-w-[40%]">
             <h3 className="mt-8 font-bold text-3xl mb-4">MIUI Changelogs:</h3>
             <ul className="list-decimal list-inside font-semibold">
@@ -156,8 +175,11 @@ const SingleRom = ({ rom, device, port }) => {
               ))}
             </ul>
           </div>
-        </div>
-        <div className="mb-10 md:flex justify-between flex-wrap">
+        </motion.div>
+        <motion.div
+          variants={animateUp}
+          className="mb-10 md:flex justify-between flex-wrap"
+        >
           <div className="md:max-w-[40%]">
             <h3 className="mt-8 font-bold text-3xl mb-4">Notes:</h3>
             <ul className="list-decimal list-inside font-semibold">
@@ -178,15 +200,15 @@ const SingleRom = ({ rom, device, port }) => {
               ))}
             </ul>
           </div>
-        </div>
-        <div className="mt-14">
+        </motion.div>
+        <motion.div variants={animateDown} className="mt-14">
           <h3 className="mt-8 font-bold text-3xl mb-4">Downloads:</h3>
           {objectMap(port?.downloadLinks, (name, link) => {
             return <AButton key={name} txt={name} href={link} />;
           })}
-        </div>
+        </motion.div>
       </div>
-    </>
+    </motion.div>
   );
 };
 
@@ -225,7 +247,7 @@ export async function getStaticProps(context) {
       device,
       port,
     },
-    revalidate: 120,
+    revalidate: 100020,
   };
 }
 

@@ -29,3 +29,83 @@ export const objectMap = (obj, fn) => {
   }
   return links;
 };
+
+// Our custom easing
+export let easing = [0.6, -0.05, 0.01, 0.99];
+let easecustom = [0.77, 0.2, 0.05, 1];
+
+export const animateExit = { y: -40, opacity: 0, transition: { ease: easing } };
+
+// Custom variant
+export const fadeInUp = {
+  initial: {
+    y: 50,
+    opacity: 0,
+    transition: { duration: 0.8, ease: easecustom },
+  },
+  animate: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.8,
+      ease: easecustom,
+      delay: 0.1,
+    },
+  },
+};
+
+export const animateDown = {
+  initial: {
+    y: -40,
+    opacity: 0,
+    transition: { duration: 0.8, ease: easecustom },
+  },
+  animate: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.8,
+      ease: easecustom,
+    },
+  },
+};
+
+export const animateUp = {
+  initial: {
+    y: 40,
+    opacity: 0,
+    transition: { duration: 0.8, ease: easecustom },
+  },
+  animate: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.8,
+      ease: easecustom,
+    },
+  },
+};
+
+export const animateNav = {
+  initial: {
+    y: -30,
+    opacity: 0,
+    transition: { duration: 0.8, ease: easecustom },
+  },
+  animate: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.8,
+      ease: easecustom,
+    },
+  },
+};
+
+export const stagger = {
+  animate: {
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};

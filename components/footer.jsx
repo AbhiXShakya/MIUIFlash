@@ -1,10 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
 import Social from "./social";
+import { motion } from "framer-motion";
+import { animateUp } from "../utils/helpers";
 
 const Footer = () => {
   return (
-    <footer className="bg-white pclamp">
+    <motion.footer
+      initial="initial"
+      animate="animate"
+      variants={animateUp}
+      className="bg-white pclamp"
+    >
       <div className="md:flex md:justify-between">
         <div className="mb-6 md:mb-0 select-none">
           <Link href="/">
@@ -121,7 +128,7 @@ const Footer = () => {
         </span>
         <Social />
       </div>
-    </footer>
+    </motion.footer>
   );
 };
 
