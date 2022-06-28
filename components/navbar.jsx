@@ -2,12 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import Social from "./social";
-import axios from "axios";
+import { Social } from "./social";
 import { motion } from "framer-motion";
 import { animateNav, easing } from "../utils/helpers";
 
-const Navbar = () => {
+export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
 
@@ -164,6 +163,4 @@ const Navbar = () => {
       </nav>
     </motion.header>
   );
-};
-
-export default Navbar;
+}

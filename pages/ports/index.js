@@ -19,15 +19,23 @@ export default function Ports({ data }) {
           MIUI Ports is a collection of MIUI ports for Android Phones.
         </motion.p>
       </div>
-      <DeviceCards data={data} />
+      <DeviceCards data={data} type="ports" />
     </motion.div>
   );
 }
 
 export async function getStaticProps() {
-  const res = await axios.get(`${process.env.REACT_APP_API_URL}/devices`, {
-    responseType: "json",
-  });
+  let res = {};
+  try {
+    res = await axios.get(`${process.env.REACT_APP_API_URL}/devices`, {
+      responseType: "json",
+    });
+  } catch (error) {
+    console.log(error.message);
+    res = await axios.get(`${process.env.REACT_APP_API_URL}/devices`, {
+      responseType: "json",
+    });
+  }
 
   const data = res.data.data;
 

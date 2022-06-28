@@ -1,4 +1,4 @@
-import { LinkButton } from "../components/buttons";
+import { LinkButton } from "../components";
 
 export default function FourOhFour() {
   return (

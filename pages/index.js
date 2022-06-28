@@ -1,4 +1,4 @@
-import HomeHero from "../components/homeHero";
+import { HomeHero } from "../components";
 import { motion } from "framer-motion";
 
 export default function Home() {

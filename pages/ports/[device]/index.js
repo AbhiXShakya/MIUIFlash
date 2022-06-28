@@ -78,9 +78,17 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-  const res = await axios.get(`${process.env.REACT_APP_API_URL}/devices`, {
-    responseType: "json",
-  });
+  let res = {};
+  try {
+    res = await axios.get(`${process.env.REACT_APP_API_URL}/devices`, {
+      responseType: "json",
+    });
+  } catch (error) {
+    console.log(error.message);
+    res = await axios.get(`${process.env.REACT_APP_API_URL}/devices`, {
+      responseType: "json",
+    });
+  }
   const devices = res.data.data;
 
   const paths = devices.map((post) => ({

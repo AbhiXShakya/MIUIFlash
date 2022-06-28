@@ -10,7 +10,7 @@ import {
 import { motion } from "framer-motion";
 import { stagger, fadeInUp } from "../utils/helpers";
 
-export const DeviceCards = ({ data }) => {
+export const DeviceCards = ({ data, type }) => {
   return (
     <motion.div variants={stagger}>
       <motion.h2
@@ -25,7 +25,14 @@ export const DeviceCards = ({ data }) => {
         className="grid grid-flow-rows place-items-center gap-6 my-14 grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
       >
         {data?.map((item) => (
-          <Link key={item?._id} href={`/ports/${item?.codename}`}>
+          <Link
+            key={item?._id}
+            href={
+              type === "ports"
+                ? `/ports/${item.codename}`
+                : `/roms/${type}/${item.codename}`
+            }
+          >
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -38,7 +45,7 @@ export const DeviceCards = ({ data }) => {
               >
                 <Image
                   src={item?.image}
-                  alt={`MIUI Ports for ${item?.name} (${parseCodename(
+                  alt={`MIUI ${type} for ${item?.name} (${parseCodename(
                     item?.codename
                   )})`}
                   layout="fill"
@@ -109,7 +116,52 @@ export const RomCards = ({ data, device }) => {
   );
 };
 
-export const PortCards = ({ ports, device, rom }) => {
+export const AllRomCards = ({ data }) => {
+  return (
+    <motion.div>
+      <motion.h2
+        animate={{ opacity: 1 }}
+        initial={{ opacity: 0 }}
+        className="text-3xl font-bold mb-0"
+      >
+        Supported Roms
+      </motion.h2>
+      <div className="grid grid-flow-rows place-items-center gap-6 my-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        {data?.map((rom) => (
+          <Link key={rom?._id} href={`/roms/${rom?.romId}`}>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0 }}
+              className="card"
+            >
+              <motion.div
+                variants={fadeInUp}
+                className="relative w-full h-44 mb-6"
+              >
+                <Image
+                  src={rom?.image}
+                  alt={`All Latest ${rom?.name} ROMs`}
+                  layout="fill"
+                  objectFit="contain"
+                  priority={true}
+                />
+              </motion.div>
+              <div className="text-center">
+                <h3 className="font-bold text-xl">{rom?.name}</h3>
+                <p className="text-sm text-gray-700 mt-1 font-medium">
+                  (by {rom?.owner})
+                </p>
+              </div>
+            </motion.div>
+          </Link>
+        ))}
+      </div>
+    </motion.div>
+  );
+};
+
+export const PortCards = ({ ports, device, rom, type }) => {
   return (
     <motion.div>
       <h2 className="text-3xl font-bold">All Ports</h2>
@@ -121,7 +173,11 @@ export const PortCards = ({ ports, device, rom }) => {
           {ports?.map((port) => (
             <Link
               key={port?._id}
-              href={`/ports/${device?.codename}/${rom?.romId}/${port?.slug}`}
+              href={
+                type === "ports"
+                  ? `/ports/${device?.codename}/${rom?.romId}/${port?.slug}`
+                  : `/roms/${type}/${device?.codename}/${port?.slug}`
+              }
             >
               <motion.div
                 whileHover={{ scale: 1.02 }}

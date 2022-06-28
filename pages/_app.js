@@ -1,5 +1,5 @@
-import Footer from "../components/footer";
-import Navbar from "../components/navbar";
+import { Footer } from "../components";
+import { Navbar } from "../components";
 import "../styles/globals.css";
 import { AnimatePresence, motion } from "framer-motion";
 

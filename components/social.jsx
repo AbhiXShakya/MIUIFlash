@@ -1,4 +1,4 @@
-const Social = () => {
+export function Social() {
   return (
     <div className="flex mt-4 space-x-6 sm:justify-center sm:mt-0">
       <a href="#" className="text-gray-500 hover:text-gray-900">
@@ -68,6 +68,4 @@ const Social = () => {
       </a>
     </div>
   );
-};
-
-export default Social;
+}

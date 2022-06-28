@@ -28,7 +28,7 @@ const SingleRom = ({ rom, device, port }) => {
             <Image
               className="rounded-lg"
               src={port?.image}
-              alt={`${rom?.name} ${port?.miuiVersion} Port for ${
+              alt={`${rom?.name} ${port?.miuiVersion} Rom for ${
                 device?.name
               } (${parseCodename(device?.codename)})`}
               width={1600}
@@ -42,7 +42,7 @@ const SingleRom = ({ rom, device, port }) => {
           >
             <Image
               src={rom?.image}
-              alt={`${rom?.name} ${port?.miuiVersion} Port for ${
+              alt={`${rom?.name} ${port?.miuiVersion} Rom for ${
                 device?.name
               } (${parseCodename(device?.codename)})`}
               layout="fill"
@@ -63,14 +63,12 @@ const SingleRom = ({ rom, device, port }) => {
               <p className="mb-10 text-sm font-semibold text-orange-500">
                 <Link href="/">Home</Link>
                 <span className="text-gray-700">&nbsp;&gt;&nbsp;</span>
-                <Link href="/ports">Ports</Link>
+                <Link href="/roms">Roms</Link>
                 <span className="text-gray-700">&nbsp;&gt;&nbsp;</span>
-                <Link href={`/ports/${device?.codename}`}>
+                <Link href={`/roms/${rom?.romId}`}>{titleCase(rom?.name)}</Link>
+                <span className="text-gray-700">&nbsp;&gt;&nbsp;</span>
+                <Link href={`/roms/${rom?.romId}/${device?.codename}`}>
                   {titleCase(device?.codename)}
-                </Link>
-                <span className="text-gray-700">&nbsp;&gt;&nbsp;</span>
-                <Link href={`/ports/${device?.codename}/${rom?.romId}`}>
-                  {titleCase(rom?.name)}
                 </Link>
               </p>
               <p>All Details for the ROM is Listed Below</p>
@@ -253,6 +251,7 @@ export async function getStaticProps(context) {
 
 export async function getStaticPaths() {
   let miuiromsRes = {};
+
   try {
     miuiromsRes = await axios.get(`${process.env.REACT_APP_API_URL}/miuiroms`, {
       responseType: "json",

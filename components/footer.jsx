@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import Social from "./social";
+import { Social } from "./social";
 import { motion } from "framer-motion";
 import { animateUp } from "../utils/helpers";
 
-const Footer = () => {
+export function Footer() {
   return (
     <motion.footer
       initial="initial"
@@ -130,6 +130,4 @@ const Footer = () => {
       </div>
     </motion.footer>
   );
-};
-
-export default Footer;
+}

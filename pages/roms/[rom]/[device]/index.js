@@ -25,19 +25,17 @@ const Rom = ({ rom, device, ports }) => {
           <p className="mb-10 text-sm font-semibold text-orange-500">
             <Link href="/">Home</Link>
             <span className="text-gray-700">&nbsp;&gt;&nbsp;</span>
-            <Link href="/ports">Ports</Link>
+            <Link href="/roms">Roms</Link>
             <span className="text-gray-700">&nbsp;&gt;&nbsp;</span>
-            <Link href={`/ports/${device?.codename}`}>
-              {parseCodename(device?.codename)}
-            </Link>
+            <Link href={`/roms/${rom?.romId}`}>{titleCase(rom?.name)}</Link>
           </p>
           <p>
-            All {rom?.name} Ported Roms for {titleCase(device?.name)} (
+            All {rom?.name} Roms for {titleCase(device?.name)} (
             {parseCodename(device?.codename)}) are listed below
           </p>
         </motion.div>
       </div>
-      <PortCards ports={ports} device={device} rom={rom} type="ports" />
+      <PortCards ports={ports} device={device} rom={rom} type={rom?.romId} />
     </motion.div>
   );
 };

@@ -3,7 +3,7 @@ import { LinkButton } from "./buttons";
 import { motion } from "framer-motion";
 import { animateDown, stagger, fadeInUp, animateUp } from "../utils/helpers";
 
-const HomeHero = () => {
+export function HomeHero() {
   return (
     <motion.div
       variants={stagger}
@@ -35,6 +35,4 @@ const HomeHero = () => {
       </div>
     </motion.div>
   );
-};
-
-export default HomeHero;
+}
