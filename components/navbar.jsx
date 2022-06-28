@@ -26,6 +26,10 @@ export function Navbar() {
       exit={{ y: "-30%", opacity: 0, transition: { ease: easing } }}
     >
       <div
+        id="mobileNavbar"
+        style={{
+          opacity: isOpen ? 1 : 0,
+        }}
         className={`absolute w-full h-[120%] duration-[0.8s] z-50 easeCustom ${
           isOpen ? "translate-y-0" : "-translate-y-[200vh]"
         } bg-white pclamp`}
