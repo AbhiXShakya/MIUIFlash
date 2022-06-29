@@ -310,7 +310,7 @@ export const PortCards = ({ ports, device, rom, type }) => {
 
   useEffect(() => {
     if (searchTerm.length > 0) {
-      const results = search(searchTerm, data, [
+      const results = search(searchTerm, ports, [
         "miuiVersion",
         "androidVersion",
         "miuiType",
