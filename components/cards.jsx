@@ -20,6 +20,12 @@ export const DeviceCards = ({ data, type }) => {
   const [isSearch, setIsSearch] = useState(false);
 
   useEffect(() => {
+    if (data.length == 0) {
+      setNotFound(true);
+    }
+  }, [data]);
+
+  useEffect(() => {
     if (searchTerm.length > 0) {
       const results = search(searchTerm, data, ["name", "codename"]);
       console.log(results);
@@ -30,7 +36,6 @@ export const DeviceCards = ({ data, type }) => {
         setNotFound(true);
       }
     } else {
-      setNotFound(true);
       setSearchResults(data);
     }
   }, [searchTerm]);
@@ -315,6 +320,12 @@ export const PortCards = ({ ports, device, rom, type }) => {
   const [isSearch, setIsSearch] = useState(false);
 
   useEffect(() => {
+    if (ports.length == 0) {
+      setNotFound(true);
+    }
+  }, [ports]);
+
+  useEffect(() => {
     if (searchTerm.length > 0) {
       const results = search(searchTerm, ports, [
         "miuiVersion",
@@ -330,7 +341,6 @@ export const PortCards = ({ ports, device, rom, type }) => {
         setNotFound(true);
       }
     } else {
-      setNotFound(true);
       setSearchResults(ports);
     }
   }, [searchTerm]);
