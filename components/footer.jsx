@@ -66,42 +66,27 @@ export function Footer() {
             <h2 className="mb-6 text-lg font-bold ">Follow us</h2>
             <ul className="text-gray-600">
               <li className="mb-4">
-                <a
-                  href="https://github.com/themesberg/miuiflash"
-                  className="hover:underline "
-                >
+                <a href="https://github.com/" className="hover:underline ">
                   Telegram Channel
                 </a>
               </li>
               <li className="mb-4">
-                <a
-                  href="https://github.com/themesberg/miuiflash"
-                  className="hover:underline "
-                >
+                <a href="https://github.com/" className="hover:underline ">
                   Telegram Group
                 </a>
               </li>
               <li className="mb-4">
-                <a
-                  href="https://discord.gg/4eeurUVvTy"
-                  className="hover:underline"
-                >
+                <a href="" className="hover:underline">
                   Twitter
                 </a>
               </li>
               <li className="mb-4">
-                <a
-                  href="https://github.com/themesberg/miuiflash"
-                  className="hover:underline "
-                >
+                <a href="https://github.com/" className="hover:underline ">
                   Instagram
                 </a>
               </li>
               <li className="mb-4">
-                <a
-                  href="https://github.com/themesberg/miuiflash"
-                  className="hover:underline "
-                >
+                <a href="https://github.com/" className="hover:underline ">
                   GitHub
                 </a>
               </li>
