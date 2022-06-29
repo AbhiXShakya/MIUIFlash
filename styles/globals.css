@@ -7,6 +7,12 @@
     scroll-behavior: smooth;
   }
 
+  img,
+  svg,
+  button {
+    user-select: none;
+  }
+
   * {
     scrollbar-width: thin;
     scrollbar-color: #fabf18 white;

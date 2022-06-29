@@ -10,6 +10,8 @@ import {
 import { motion } from "framer-motion";
 import { stagger, fadeInUp, search } from "../utils/helpers";
 import { useEffect, useState } from "react";
+import { NoResults } from ".";
+import { data } from "autoprefixer";
 
 export const DeviceCards = ({ data, type }) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -28,7 +30,7 @@ export const DeviceCards = ({ data, type }) => {
         setNotFound(true);
       }
     } else {
-      setNotFound(false);
+      setNotFound(true);
       setSearchResults(data);
     }
   }, [searchTerm]);
@@ -39,9 +41,9 @@ export const DeviceCards = ({ data, type }) => {
         variants={fadeInUp}
         className="flex justify-between md:justify-start"
       >
-        <h2 className="text-3xl font-bold">All Ports</h2>
+        <h2 className="text-3xl font-bold">Supported Devices</h2>
         <div
-          className="mt-[0.15rem] md:ml-4 cursor-pointer select-text"
+          className="mt-[0.19rem] md:ml-4 cursor-pointer select-text"
           onClick={() => {
             setIsSearch(!isSearch);
           }}
@@ -70,14 +72,14 @@ export const DeviceCards = ({ data, type }) => {
               notFound
                 ? "ring-2 ring-red-500 hover:ring-2 focus:ring-2 active:ring-2 hover:ring-red-500 focus:ring-red-500 active:ring-red-500"
                 : "ring-1 ring-gray-300 hover:ring-1 focus:ring-1 active:ring-1 hover:ring-orange-500 focus:ring-orange-500 active:ring-orange-500"
-            } outline-none w-full rounded-md py-1 px-2`}
+            } outline-none w-full md:max-w-[20.1rem] rounded-md py-1 px-2`}
             type="text"
             placeholder="Search"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
           {notFound ? (
-            <motion.div className="absolute right-0 top-1/2 -translate-y-1/2 mr-2">
+            <motion.div className="absolute right-0 top-1/2 -translate-y-1/2 mr-2 md:left-[18.7rem]">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -159,50 +161,54 @@ export const DeviceCards = ({ data, type }) => {
           ) : null}
         </motion.div>
       ) : null}
-      <motion.div
-        variants={animateDown}
-        className="grid grid-flow-rows place-items-center gap-6 my-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
-      >
-        {searchResults?.map((item) => (
-          <Link
-            key={item?._id}
-            href={
-              type === "ports"
-                ? `/ports/${item.codename}`
-                : `/roms/${type}/${item.codename}`
-            }
-          >
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ duration: 0 }}
-              className="card"
+      {!notFound ? (
+        <motion.div
+          variants={animateDown}
+          className="grid grid-flow-rows place-items-center gap-6 my-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+        >
+          {searchResults?.map((item) => (
+            <Link
+              key={item?._id}
+              href={
+                type === "ports"
+                  ? `/ports/${item.codename}`
+                  : `/roms/${type}/${item.codename}`
+              }
             >
               <motion.div
-                initial="initial"
-                animate="animate"
-                variants={fadeInUp}
-                className="relative w-full h-44 mb-6"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0 }}
+                className="card"
               >
-                <Image
-                  src={item?.image}
-                  alt={`MIUI ${type} for ${item?.name} (${parseCodename(
-                    item?.codename
-                  )})`}
-                  layout="fill"
-                  objectFit="contain"
-                />
+                <motion.div
+                  initial="initial"
+                  animate="animate"
+                  variants={fadeInUp}
+                  className="relative w-full h-44 mb-6"
+                >
+                  <Image
+                    src={item?.image}
+                    alt={`MIUI ${type} for ${item?.name} (${parseCodename(
+                      item?.codename
+                    )})`}
+                    layout="fill"
+                    objectFit="contain"
+                  />
+                </motion.div>
+                <div className="text-center">
+                  <h3 className="font-bold text-xl">{item?.name}</h3>
+                  <p className="text-sm text-gray-700 mt-1 font-medium">
+                    ({parseCodename(item?.codename)})
+                  </p>
+                </div>
               </motion.div>
-              <div className="text-center">
-                <h3 className="font-bold text-xl">{item?.name}</h3>
-                <p className="text-sm text-gray-700 mt-1 font-medium">
-                  ({parseCodename(item?.codename)})
-                </p>
-              </div>
-            </motion.div>
-          </Link>
-        ))}
-      </motion.div>
+            </Link>
+          ))}
+        </motion.div>
+      ) : (
+        <NoResults />
+      )}
     </motion.div>
   );
 };
@@ -324,7 +330,7 @@ export const PortCards = ({ ports, device, rom, type }) => {
         setNotFound(true);
       }
     } else {
-      setNotFound(false);
+      setNotFound(true);
       setSearchResults(ports);
     }
   }, [searchTerm]);
@@ -454,69 +460,73 @@ export const PortCards = ({ ports, device, rom, type }) => {
           ) : null}
         </motion.div>
       ) : null}
-      <div className="mt-8">
-        <motion.div
-          variants={animateUp}
-          className="grid grid-flow-row grid-cols-1 mb-6 md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
-          {searchResults?.map((port) => (
-            <Link
-              key={port?._id}
-              href={
-                type === "ports"
-                  ? `/ports/${device?.codename}/${rom?.romId}/${port?.slug}`
-                  : `/roms/${type}/${device?.codename}/${port?.slug}`
-              }
-            >
-              <motion.div
-                initial="initial"
-                animate="animate"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ duration: 0.2 }}
-                className="select-none cursor-pointer group"
+      {!notFound ? (
+        <div className="mt-8">
+          <motion.div
+            variants={animateUp}
+            className="grid grid-flow-row grid-cols-1 mb-6 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
+            {searchResults?.map((port) => (
+              <Link
+                key={port?._id}
+                href={
+                  type === "ports"
+                    ? `/ports/${device?.codename}/${rom?.romId}/${port?.slug}`
+                    : `/roms/${type}/${device?.codename}/${port?.slug}`
+                }
               >
-                <Image
-                  src={port?.image}
-                  alt={`${port?.name} Port for ${rom?.name} (${
-                    device?.name
-                  } (${parseCodename(device?.codename)}))`}
-                  className="object-cover object-center w-full rounded-lg shadow-md"
-                  width={1600}
-                  height={900}
-                />
-                <div className="relative px-4 -mt-10">
-                  <motion.div className="p-5 card group-hover:border-orange-500 bg-white">
-                    <h2 className="text-xl mb-2 font-extrabold">
-                      {rom?.name}&nbsp;
-                      {port?.miuiVersion}
-                    </h2>
-                    <p className="text-sm text-gray-700 font-medium">
-                      {parseDate(port?.updatedAt)}
-                    </p>
-                    <div className="mt-1">
-                      <p className="text-sm text-gray-600 min-h-[2rem]">
-                        Build by {port?.maintainer}
+                <motion.div
+                  initial="initial"
+                  animate="animate"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ duration: 0.2 }}
+                  className="select-none cursor-pointer group"
+                >
+                  <Image
+                    src={port?.image}
+                    alt={`${port?.name} Port for ${rom?.name} (${
+                      device?.name
+                    } (${parseCodename(device?.codename)}))`}
+                    className="object-cover object-center w-full rounded-lg shadow-md"
+                    width={1600}
+                    height={900}
+                  />
+                  <div className="relative px-4 -mt-10">
+                    <motion.div className="p-5 card group-hover:border-orange-500 bg-white">
+                      <h2 className="text-xl mb-2 font-extrabold">
+                        {rom?.name}&nbsp;
+                        {port?.miuiVersion}
+                      </h2>
+                      <p className="text-sm text-gray-700 font-medium">
+                        {parseDate(port?.updatedAt)}
                       </p>
-                    </div>
-                    <div className="flex flex-wrap items-baseline mb-3">
-                      <span className="inline-block px-2 py-1 pt-[5px] mr-1 text-[0.6rem] font-semibold tracking-wide text-black rounded-full bg-gray-200 group-hover:bg-orange-100">
-                        {titleCase(port?.miuiType)}
-                      </span>
-                      <span className="inline-block px-2 py-1 pt-[5px] mr-1 text-[0.6rem] font-semibold tracking-wide text-black rounded-full bg-gray-200 group-hover:bg-orange-100">
-                        Android {port?.androidVersion}
-                      </span>
-                      <span className="inline-block px-2 py-1 pt-[5px] mr-1 text-[0.6rem] font-semibold tracking-wide text-black rounded-full bg-gray-200 group-hover:bg-orange-100">
-                        {titleCase(port?.status)}
-                      </span>
-                    </div>
-                  </motion.div>
-                </div>
-              </motion.div>
-            </Link>
-          ))}
-        </motion.div>
-      </div>
+                      <div className="mt-1">
+                        <p className="text-sm text-gray-600 min-h-[2rem]">
+                          Build by {port?.maintainer}
+                        </p>
+                      </div>
+                      <div className="flex flex-wrap items-baseline mb-3">
+                        <span className="inline-block px-2 py-1 pt-[5px] mr-1 text-[0.6rem] font-semibold tracking-wide text-black rounded-full bg-gray-200 group-hover:bg-orange-100">
+                          {titleCase(port?.miuiType)}
+                        </span>
+                        <span className="inline-block px-2 py-1 pt-[5px] mr-1 text-[0.6rem] font-semibold tracking-wide text-black rounded-full bg-gray-200 group-hover:bg-orange-100">
+                          Android {port?.androidVersion}
+                        </span>
+                        <span className="inline-block px-2 py-1 pt-[5px] mr-1 text-[0.6rem] font-semibold tracking-wide text-black rounded-full bg-gray-200 group-hover:bg-orange-100">
+                          {titleCase(port?.status)}
+                        </span>
+                      </div>
+                    </motion.div>
+                  </div>
+                </motion.div>
+              </Link>
+            ))}
+          </motion.div>
+        </div>
+      ) : (
+        <NoResults />
+      )}
     </motion.div>
   );
 };

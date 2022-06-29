@@ -80,7 +80,7 @@ export function Navbar() {
                 router.pathname.includes("/about") ? "currentLink" : ""
               }
             >
-              <Link href="#">About</Link>
+              <Link href="#">Blog</Link>
             </li>
             <li
               onClick={() => {
@@ -90,7 +90,7 @@ export function Navbar() {
                 router.pathname.includes("/contact") ? "currentLink" : ""
               }
             >
-              <Link href="#">Contact</Link>
+              <Link href="#">Dark Mode</Link>
             </li>
           </ul>
           <div className="flex justify-center w-full mt-9">
@@ -147,14 +147,14 @@ export function Navbar() {
                 router.pathname.includes("/about") ? "currentLink" : ""
               }
             >
-              <Link href="#">About</Link>
+              <Link href="#">Blog</Link>
             </li>
             <li
               className={
                 router.pathname.includes("/contact") ? "currentLink" : ""
               }
             >
-              <Link href="#">Contact</Link>
+              <Link href="#">Dark Mode</Link>
             </li>
           </ul>
         </div>

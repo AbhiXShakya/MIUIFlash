@@ -55,6 +55,11 @@ export function Footer() {
                   MIUI Updates
                 </Link>
               </li>
+              <li className="mb-4">
+                <Link href="/ports" className="hover:underline">
+                  Blog
+                </Link>
+              </li>
             </ul>
           </div>
           <div>
@@ -65,7 +70,15 @@ export function Footer() {
                   href="https://github.com/themesberg/miuiflash"
                   className="hover:underline "
                 >
-                  Telegram
+                  Telegram Channel
+                </a>
+              </li>
+              <li className="mb-4">
+                <a
+                  href="https://github.com/themesberg/miuiflash"
+                  className="hover:underline "
+                >
+                  Telegram Group
                 </a>
               </li>
               <li className="mb-4">
@@ -74,6 +87,14 @@ export function Footer() {
                   className="hover:underline"
                 >
                   Twitter
+                </a>
+              </li>
+              <li className="mb-4">
+                <a
+                  href="https://github.com/themesberg/miuiflash"
+                  className="hover:underline "
+                >
+                  Instagram
                 </a>
               </li>
               <li className="mb-4">
@@ -102,6 +123,16 @@ export function Footer() {
               <li className="mb-4">
                 <a href="#" className="hover:underline">
                   DMCA
+                </a>
+              </li>
+              <li className="mb-4">
+                <a href="#" className="hover:underline">
+                  About Us
+                </a>
+              </li>
+              <li className="mb-4">
+                <a href="#" className="hover:underline">
+                  Contact Us
                 </a>
               </li>
             </ul>
