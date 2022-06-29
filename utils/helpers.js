@@ -109,3 +109,12 @@ export const stagger = {
     },
   },
 };
+
+export const search = (searchTerm, items, toSearchIn) => {
+  if (!searchTerm) return items;
+  return items.filter((item) => {
+    return toSearchIn.some((field) => {
+      return item[field].toLowerCase().includes(searchTerm.toLowerCase());
+    });
+  });
+};
