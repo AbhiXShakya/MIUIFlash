@@ -12,7 +12,7 @@ import {
 import { motion } from "framer-motion";
 import { stagger, fadeInUp, search } from "../utils/helpers";
 import { useEffect, useState } from "react";
-import { NoResults, AButton } from ".";
+import { NoResults, AUpdatesButton } from ".";
 
 export const DeviceCards = ({ data, type }) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -1148,88 +1148,106 @@ export const DeviceUpdatedRoms = ({ data, device }) => {
           className="grid grid-flow-rows place-items-center gap-6 my-10 grid-cols-1 md:grid-cols-1 lg:grid-cols-2"
         >
           {searchResults?.map((item) => (
-            <Link
+            <motion.div
               key={item?.miuiVersion}
-              href={`/miuiupdates/${device?.deviceId}/${
-                item?.device
-              }/${item?.miuiVersion.replaceAll(".", "-")}`}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0 }}
+              className="card"
             >
               <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ duration: 0 }}
-                className="card"
+                initial="animate"
+                animate="animate"
+                variants={fadeInUp}
+                className="w-full h-20 mb-6"
               >
-                <motion.div
-                  initial="animate"
-                  animate="animate"
-                  variants={fadeInUp}
-                  className="w-full h-20 mb-6"
+                <h1
+                  className={`text-center font-extrabold text-transparent text-7xl bg-clip-text bg-gradient-to-r ${
+                    gradients[Math.floor(Math.random() * 11)]
+                  }`}
                 >
-                  <h1
-                    className={`text-center font-extrabold text-transparent text-7xl bg-clip-text bg-gradient-to-r ${
-                      gradients[Math.floor(Math.random() * 11)]
-                    }`}
-                  >
-                    MIUI
-                  </h1>
-                </motion.div>
-                <div className="text-center">
-                  <h3 className="font-bold text-black text-3xl mb-1">
-                    {titleCase(item?.miuiVersion)}
-                  </h3>
-                  <ul>
-                    <li className="text-base text-gray-700 mb-1">
-                      ( {titleCase(item?.status ? item.status : "stable")} )
-                    </li>
-                  </ul>
-                </div>
-                <div className="flex flex-col p-6">
-                  <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
-                    <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
-                      <div className="overflow-x-auto">
-                        <table className="min-w-full">
-                          <tbody>
+                  MIUI
+                </h1>
+              </motion.div>
+              <div className="text-center">
+                <h3 className="font-bold text-black text-3xl mb-1">
+                  {titleCase(item?.miuiVersion)}
+                </h3>
+                <ul>
+                  <li className="text-base text-gray-700 mb-1">
+                    ( {titleCase(item?.status ? item.status : "stable")} )
+                  </li>
+                </ul>
+              </div>
+              <div className="flex flex-col p-6">
+                <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                  <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+                    <div className="overflow-x-auto">
+                      <table className="min-w-full">
+                        <tbody>
+                          <tr className="border-b">
+                            <td className="px-2 py-4 whitespace-nowrap text-sm md:text-lg font-bold text-gray-900">
+                              MIUI Version
+                            </td>
+                            <td className="text-sm md:text-lg text-gray-900 font-medium px-2 py-4 whitespace-wrap">
+                              {item?.miuiVersion}
+                            </td>
+                          </tr>
+                          <tr className="border-b">
+                            <td className="px-2 py-4 whitespace-nowrap text-sm md:text-lg font-bold text-gray-900">
+                              Android Version
+                            </td>
+                            <td className="text-sm md:text-lg text-gray-900 font-medium px-2 py-4 whitespace-wrap">
+                              {item?.androidVersion}
+                            </td>
+                          </tr>
+                          <tr className="border-b">
+                            <td className="px-2 py-4 whitespace-nowrap text-sm md:text-lg font-bold text-gray-900">
+                              Codename
+                            </td>
+                            <td className="text-sm md:text-lg text-gray-900 font-medium px-2 py-4 whitespace-wrap">
+                              {device?.deviceId}
+                            </td>
+                          </tr>
+                          <tr className="border-b">
+                            <td className="px-2 py-4 whitespace-nowrap text-sm md:text-lg font-bold text-gray-900">
+                              Updated
+                            </td>
+                            <td className="text-sm md:text-lg text-gray-900 font-medium px-2 py-4 whitespace-wrap">
+                              {parseDate(item?.date)}
+                            </td>
+                          </tr>
+                          <tr className="border-b">
+                            <td className="px-2 py-4 whitespace-nowrap text-sm md:text-lg font-bold text-gray-900">
+                              Size
+                            </td>
+                            <td className="text-sm md:text-lg text-gray-900 font-medium px-2 py-4 whitespace-wrap">
+                              {item?.fileSize}
+                            </td>
+                          </tr>
+                          {item?.otaFor ? (
                             <tr className="border-b">
                               <td className="px-2 py-4 whitespace-nowrap text-sm md:text-lg font-bold text-gray-900">
-                                MIUI Version
+                                OTA Apply For
                               </td>
                               <td className="text-sm md:text-lg text-gray-900 font-medium px-2 py-4 whitespace-wrap">
-                                {item?.miuiVersion}
+                                {item?.otaFor}
                               </td>
                             </tr>
-                            <tr className="border-b">
-                              <td className="px-2 py-4 whitespace-nowrap text-sm md:text-lg font-bold text-gray-900">
-                                Android Version
-                              </td>
-                              <td className="text-sm md:text-lg text-gray-900 font-medium px-2 py-4 whitespace-wrap">
-                                {item?.androidVersion}
-                              </td>
-                            </tr>
-                            <tr className="border-b">
-                              <td className="px-2 py-4 whitespace-nowrap text-sm md:text-lg font-bold text-gray-900">
-                                Codename
-                              </td>
-                              <td className="text-sm md:text-lg text-gray-900 font-medium px-2 py-4 whitespace-wrap">
-                                {device?.deviceId}
-                              </td>
-                            </tr>
-                            <tr className="border-b">
-                              <td className="px-2 py-4 whitespace-nowrap text-sm md:text-lg font-bold text-gray-900">
-                                Updated
-                              </td>
-                              <td className="text-sm md:text-lg text-gray-900 font-medium px-2 py-4 whitespace-wrap">
-                                {parseDate(item?.date)}
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
+                          ) : null}
+                        </tbody>
+                      </table>
                     </div>
                   </div>
                 </div>
-              </motion.div>
-            </Link>
+              </div>
+              <div className="flex items-center justify-center">
+                <AUpdatesButton txt="Download" href={item?.fileUrl} />
+                {item?.otaLink ? (
+                  <AUpdatesButton txt="OTA" href={item?.otaLink} />
+                ) : null}
+              </div>
+            </motion.div>
           ))}
         </motion.div>
       ) : (
