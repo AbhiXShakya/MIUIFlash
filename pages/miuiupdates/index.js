@@ -40,7 +40,7 @@ export async function getStaticProps() {
 
   const data = res.data.data;
 
-  return { props: { data }, revalidate: 1000 };
+  return { props: { data }, revalidate: 10000 };
 }
 
 export default MiuiUpdates;

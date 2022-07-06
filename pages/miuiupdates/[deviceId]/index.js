@@ -42,7 +42,7 @@ export async function getStaticProps({ params }) {
 
   const data = res.data.data;
 
-  return { props: { data }, revalidate: 1000 };
+  return { props: { data }, revalidate: 10000 };
 }
 
 export async function getStaticPaths() {

@@ -77,7 +77,7 @@ export async function getStaticProps(context) {
       device,
       ports,
     },
-    revalidate: 1000,
+    revalidate: 10000,
   };
 }
 

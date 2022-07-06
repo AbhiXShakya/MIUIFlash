@@ -51,7 +51,7 @@ export async function getStaticProps({ params }) {
   rom = res.data.data.rom;
   const devices = res.data.data.devices;
 
-  return { props: { devices, rom }, revalidate: 1000 };
+  return { props: { devices, rom }, revalidate: 10000 };
 }
 
 export async function getStaticPaths() {

@@ -919,7 +919,7 @@ export const MiuiDevices = ({ data }) => {
           {searchResults?.map((item) => (
             <Link
               key={item?.id}
-              href={`/miuiupdates/${data?.deviceId}/${item?.id
+              href={`/miuiupdates/${data?.deviceId.toLowerCase()}/${item?.id
                 .toLowerCase()
                 .replaceAll("_", "-")}`}
             >

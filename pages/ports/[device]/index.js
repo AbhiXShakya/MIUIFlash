@@ -73,7 +73,7 @@ export async function getStaticProps(context) {
       deviceRoms,
       device,
     },
-    revalidate: 1000,
+    revalidate: 10000,
   };
 }
 
