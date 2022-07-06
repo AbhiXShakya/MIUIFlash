@@ -70,7 +70,7 @@ export function Navbar() {
                 router.pathname.includes("/miui-updates") ? "currentLink" : ""
               }
             >
-              <Link href="#">MIUI Updates</Link>
+              <Link href="/miuiupdates">MIUI Updates</Link>
             </li>
             <li
               onClick={() => {
@@ -140,7 +140,7 @@ export function Navbar() {
                 router.pathname.includes("/miui-updates") ? "currentLink" : ""
               }
             >
-              <Link href="#">MIUI Updates</Link>
+              <Link href="/miuiupdates">MIUI Updates</Link>
             </li>
             <li
               className={

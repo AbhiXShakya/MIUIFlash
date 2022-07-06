@@ -33,7 +33,7 @@ export const RomPost = ({ rom, port, device }) => {
           </motion.div>
           <motion.div
             variants={animateUp}
-            className="m-auto translate-x-28 hidden relative w-56 h-56 lg:block"
+            className="mr-[10%] translate-x-28 hidden relative w-56 h-56 lg:block"
           >
             <Image
               src={rom?.image}
@@ -199,7 +199,7 @@ export const RomPost = ({ rom, port, device }) => {
         <motion.div variants={animateDown} className="mt-14">
           <h3 className="mt-8 font-bold text-3xl mb-4">Downloads:</h3>
           {objectMap(port?.downloadLinks, (name, link) => {
-            return <AButton key={name} txt={name} href={link} />;
+            return <AButton key={link} txt={name} href={link} />;
           })}
         </motion.div>
       </div>

@@ -118,3 +118,17 @@ export const search = (searchTerm, items, toSearchIn) => {
     });
   });
 };
+
+export const searchArray = (searchTerm, items) => {
+  if (!searchTerm) return items;
+  return items.filter((item) => {
+    return JSON.stringify(item)
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
+  });
+};
+
+export const randomColor = () => {
+  const color = new TailwindColor().pick().replace("bg-", "");
+  return color;
+};
