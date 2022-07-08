@@ -1,7 +1,7 @@
 import { parseCodename, titleCase } from "../../../utils/helpers";
 import Link from "next/link";
 import axios from "axios";
-import { RomCards } from "../../../components";
+import { Breadcrumbs, RomCards } from "../../../components";
 import { motion } from "framer-motion";
 import {
   animateDown,
@@ -11,6 +11,17 @@ import {
 } from "../../../utils/helpers";
 
 const Device = ({ deviceRoms, device }) => {
+  const breadcrumbs = [
+    {
+      name: "Home",
+      href: "/",
+    },
+    {
+      name: "Ports",
+      href: "/ports",
+    },
+  ];
+
   return (
     <motion.div initial="initial" animate="animate">
       <div className="mb-12">
@@ -21,15 +32,7 @@ const Device = ({ deviceRoms, device }) => {
           </h2>
         </motion.div>
         <motion.div variants={animateUp}>
-          <p className="mb-10 text-sm font-semibold text-orange-500">
-            <Link href="/">Home</Link>
-            <span className="text-gray-700">&nbsp;&gt;&nbsp;</span>
-            <Link href="/ports">Ports</Link>
-          </p>
-          <p>
-            All Ported Roms for {titleCase(device?.name)} (
-            {parseCodename(device?.codename)}) are listed below
-          </p>
+          <Breadcrumbs breadm={breadcrumbs} />
         </motion.div>
       </div>
       <RomCards data={deviceRoms} device={device} />

@@ -1,16 +1,21 @@
 import axios from "axios";
-import { DeviceCards } from "../../../components";
+import { Breadcrumbs, DeviceCards } from "../../../components";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import {
-  animateDown,
-  animateExit,
-  animateUp,
-  easing,
-  titleCase,
-} from "../../../utils/helpers";
+import { animateDown, animateUp, titleCase } from "../../../utils/helpers";
 
 export function Rom({ rom, devices }) {
+  const breadcrumbs = [
+    {
+      name: "Home",
+      href: "/",
+    },
+    {
+      name: "Roms",
+      href: "/roms",
+    },
+  ];
+
   return (
     <motion.div initial="initial" animate="animate">
       <div className="mb-12">
@@ -21,11 +26,7 @@ export function Rom({ rom, devices }) {
           </h2>
         </motion.div>
         <motion.div variants={animateUp}>
-          <p className="mb-10 text-sm font-semibold text-orange-500">
-            <Link href="/">Home</Link>
-            <span className="text-gray-700">&nbsp;&gt;&nbsp;</span>
-            <Link href="/roms">Roms</Link>
-          </p>
+          <Breadcrumbs breadm={breadcrumbs} />
           <p>All {rom?.name} Roms for Android Phones are listed below</p>
         </motion.div>
       </div>

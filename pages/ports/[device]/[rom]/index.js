@@ -1,8 +1,7 @@
 import { parseCodename, titleCase, parseDate } from "../../../../utils/helpers";
 import Link from "next/link";
-import Image from "next/image";
 import axios from "axios";
-import { PortCards } from "../../../../components";
+import { Breadcrumbs, PortCards } from "../../../../components";
 import { motion } from "framer-motion";
 import {
   animateDown,
@@ -12,6 +11,21 @@ import {
 } from "../../../../utils/helpers";
 
 const Rom = ({ rom, device, ports }) => {
+  const breadcrumbs = [
+    {
+      name: "Home",
+      href: "/",
+    },
+    {
+      name: "Ports",
+      href: "/ports",
+    },
+    {
+      name: parseCodename(device?.codename),
+      href: `/ports/${device?.codename}`,
+    },
+  ];
+
   return (
     <motion.div initial="initial" animate="animate">
       <div className="mb-12">
@@ -22,15 +36,7 @@ const Rom = ({ rom, device, ports }) => {
           </h2>
         </motion.div>
         <motion.div variants={animateUp}>
-          <p className="mb-10 text-sm font-semibold text-orange-500">
-            <Link href="/">Home</Link>
-            <span className="text-gray-700">&nbsp;&gt;&nbsp;</span>
-            <Link href="/ports">Ports</Link>
-            <span className="text-gray-700">&nbsp;&gt;&nbsp;</span>
-            <Link href={`/ports/${device?.codename}`}>
-              {parseCodename(device?.codename)}
-            </Link>
-          </p>
+          <Breadcrumbs breadm={breadcrumbs} />
           <p>
             All {rom?.name} Ported Roms for {titleCase(device?.name)} (
             {parseCodename(device?.codename)}) are listed below

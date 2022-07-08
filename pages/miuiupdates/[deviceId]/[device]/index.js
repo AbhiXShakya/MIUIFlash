@@ -2,11 +2,26 @@ import axios from "axios";
 import { motion } from "framer-motion";
 import { animateDown, animateUp, titleCase } from "../../../../utils/helpers";
 import { useState } from "react";
-import { DeviceUpdatedRoms } from "../../../../components";
+import { Breadcrumbs, DeviceUpdatedRoms } from "../../../../components";
 
 const device = ({ data }) => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [recovery, setRecovery] = useState(true);
+
+  const breadcrumbs = [
+    {
+      name: "Home",
+      href: "/",
+    },
+    {
+      name: "Miui Updates",
+      href: "/miuiupdates",
+    },
+    {
+      name: titleCase(data.deviceId),
+      href: `/miuiupdates/${data.deviceId}`,
+    },
+  ];
 
   return (
     <motion.div initial="initial" animate="animate">
@@ -17,9 +32,12 @@ const device = ({ data }) => {
         >
           {titleCase(data.model)}
         </motion.h1>
-        <motion.p variants={animateUp} className="mb-6 text-gray-700">
+        <motion.p variants={animateUp} className="font-bold mb-4 text-gray-700">
           ({titleCase(data?.device.replaceAll("-", " "))})
         </motion.p>
+        <motion.div variants={animateDown}>
+          <Breadcrumbs breadm={breadcrumbs} />
+        </motion.div>
         <motion.p variants={animateUp}>
           MIUI Ports is a collection of MIUI ports for Android Phones.
         </motion.p>

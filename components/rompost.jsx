@@ -10,8 +10,19 @@ import Link from "next/link";
 import Image from "next/image";
 import { AButton } from ".";
 import { motion } from "framer-motion";
+import { Breadcrumbs } from ".";
 
 export const RomPost = ({ rom, port, device }) => {
+  const breadcrumbs = [
+    { name: "Home", href: "/" },
+    { name: "Ports", href: "/ports" },
+    { name: titleCase(device?.codename), href: `/ports/${device?.codename}` },
+    {
+      name: titleCase(rom?.name),
+      href: `/ports/${device?.codename}/${rom?.romId}`,
+    },
+  ];
+
   return (
     <motion.div initial="initial" animate="animate">
       <div className="mb-12">
@@ -55,19 +66,7 @@ export const RomPost = ({ rom, port, device }) => {
               </h2>
             </motion.div>
             <motion.div variants={animateUp}>
-              <p className="mb-10 text-sm font-semibold text-orange-500">
-                <Link href="/">Home</Link>
-                <span className="text-gray-700">&nbsp;&gt;&nbsp;</span>
-                <Link href="/ports">Ports</Link>
-                <span className="text-gray-700">&nbsp;&gt;&nbsp;</span>
-                <Link href={`/ports/${device?.codename}`}>
-                  {titleCase(device?.codename)}
-                </Link>
-                <span className="text-gray-700">&nbsp;&gt;&nbsp;</span>
-                <Link href={`/ports/${device?.codename}/${rom?.romId}`}>
-                  {titleCase(rom?.name)}
-                </Link>
-              </p>
+              <Breadcrumbs breadm={breadcrumbs} />
               <p>All Details for the ROM is Listed Below</p>
               <div className="flex flex-col">
                 <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
