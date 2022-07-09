@@ -1,25 +1,18 @@
 import axios from "axios";
-import { DeviceCards } from "../../components";
+import { BlogCards, DeviceCards } from "../../components";
 import { motion } from "framer-motion";
-import {
-  animateDown,
-  animateExit,
-  animateUp,
-  easing,
-} from "../../utils/helpers";
+import { animateDown, animateUp } from "../../utils/helpers";
 
 export default function Ports({ data }) {
   return (
     <motion.div initial="initial" animate="animate">
       <div className="mb-12">
         <motion.h1 variants={animateDown} className="pageH1">
-          MIUI Ports
+          Blogs
         </motion.h1>
-        <motion.p variants={animateUp}>
-          MIUI Ports is a collection of MIUI ports for Android Phones.
-        </motion.p>
+        <motion.p variants={animateUp}>We have a collection of blogs.</motion.p>
       </div>
-      <DeviceCards data={data} type="ports" />
+      <BlogCards data={data} type="ports" />
     </motion.div>
   );
 }
@@ -27,12 +20,12 @@ export default function Ports({ data }) {
 export async function getStaticProps() {
   let res = {};
   try {
-    res = await axios.get(`${process.env.REACT_APP_API_URL}/devices`, {
+    res = await axios.get(`${process.env.REACT_APP_API_URL}/blogs`, {
       responseType: "json",
     });
   } catch (error) {
     console.log(error.message);
-    res = await axios.get(`${process.env.REACT_APP_API_URL}/devices`, {
+    res = await axios.get(`${process.env.REACT_APP_API_URL}/blogs`, {
       responseType: "json",
     });
   }

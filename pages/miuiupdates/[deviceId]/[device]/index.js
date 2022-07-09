@@ -108,7 +108,7 @@ export const getStaticProps = async ({ params }) => {
   const data = res.data.data;
   data["device"] = device;
 
-  return { props: { data }, revalidate: 10000 };
+  return { props: { data } };
 };
 
 export const getStaticPaths = async () => {

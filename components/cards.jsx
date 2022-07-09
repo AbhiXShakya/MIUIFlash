@@ -1256,3 +1256,205 @@ export const DeviceUpdatedRoms = ({ data, device }) => {
     </motion.div>
   );
 };
+
+export const BlogCards = ({ data }) => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] = useState(data);
+  const [notFound, setNotFound] = useState(false);
+  const [isSearch, setIsSearch] = useState(false);
+
+  console.log(data);
+
+  useEffect(() => {
+    if (data.length == 0) {
+      setNotFound(true);
+    }
+  }, [data]);
+
+  useEffect(() => {
+    if (searchTerm.length > 0) {
+      const results = searchArray(searchTerm, data);
+      if (results.length > 0) {
+        setNotFound(false);
+        setSearchResults(results);
+      } else {
+        setNotFound(true);
+      }
+    } else {
+      setSearchResults(data);
+    }
+  }, [searchTerm]);
+
+  return (
+    <motion.div>
+      <motion.div
+        variants={fadeInUp}
+        className="flex justify-between md:justify-start"
+      >
+        <h2 className="text-3xl font-bold">All Blogs</h2>
+        <div
+          className="mt-[0.15rem] md:ml-4 cursor-pointer select-text"
+          onClick={() => {
+            setIsSearch(!isSearch);
+          }}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={4}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            />
+          </svg>
+        </div>
+      </motion.div>
+      {isSearch ? (
+        <motion.div variants={fadeInUp} className="relative">
+          <input
+            className={`${
+              notFound
+                ? "ring-2 ring-red-500 hover:ring-2 focus:ring-2 active:ring-2 hover:ring-red-500 focus:ring-red-500 active:ring-red-500"
+                : "ring-1 ring-gray-300 hover:ring-1 focus:ring-1 active:ring-1 hover:ring-orange-500 focus:ring-orange-500 active:ring-orange-500"
+            } outline-none w-full rounded-md py-1 px-2`}
+            type="text"
+            placeholder="Search"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          {notFound ? (
+            <motion.div className="absolute right-0 top-1/2 -translate-y-1/2 mr-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                xmlnsXlink="http://www.w3.org/1999/xlink"
+                version="1.1"
+                width={16}
+                height={16}
+                viewBox="0 0 256 256"
+                xmlSpace="preserve"
+              >
+                <defs></defs>
+                <g transform="translate(128 128) scale(0.72 0.72)" style={{}}>
+                  <g
+                    style={{
+                      stroke: "none",
+                      strokeWidth: 0,
+                      strokeDasharray: "none",
+                      strokeLinecap: "butt",
+                      strokeLinejoin: "miter",
+                      strokeMiterlimit: 10,
+                      fill: "none",
+                      fillRule: "nonzero",
+                      opacity: 1,
+                    }}
+                    transform="translate(-175.05 -175.05000000000004) scale(3.89 3.89)"
+                  >
+                    <path
+                      d="M 45 90 C 20.187 90 0 69.813 0 45 C 0 20.187 20.187 0 45 0 c 24.813 0 45 20.187 45 45 C 90 69.813 69.813 90 45 90 z"
+                      style={{
+                        stroke: "none",
+                        strokeWidth: 1,
+                        strokeDasharray: "none",
+                        strokeLinecap: "butt",
+                        strokeLinejoin: "miter",
+                        strokeMiterlimit: 10,
+                        fill: "rgb(236,0,0)",
+                        fillRule: "nonzero",
+                        opacity: 1,
+                      }}
+                      transform=" matrix(1 0 0 1 0 0) "
+                      strokeLinecap="round"
+                    />
+                    <path
+                      d="M 28.902 66.098 c -1.28 0 -2.559 -0.488 -3.536 -1.465 c -1.953 -1.952 -1.953 -5.118 0 -7.07 l 32.196 -32.196 c 1.951 -1.952 5.119 -1.952 7.07 0 c 1.953 1.953 1.953 5.119 0 7.071 L 32.438 64.633 C 31.461 65.609 30.182 66.098 28.902 66.098 z"
+                      style={{
+                        stroke: "none",
+                        strokeWidth: 1,
+                        strokeDasharray: "none",
+                        strokeLinecap: "butt",
+                        strokeLinejoin: "miter",
+                        strokeMiterlimit: 10,
+                        fill: "rgb(255,255,255)",
+                        fillRule: "nonzero",
+                        opacity: 1,
+                      }}
+                      transform=" matrix(1 0 0 1 0 0) "
+                      strokeLinecap="round"
+                    />
+                    <path
+                      d="M 61.098 66.098 c -1.279 0 -2.56 -0.488 -3.535 -1.465 L 25.367 32.438 c -1.953 -1.953 -1.953 -5.119 0 -7.071 c 1.953 -1.952 5.118 -1.952 7.071 0 l 32.195 32.196 c 1.953 1.952 1.953 5.118 0 7.07 C 63.657 65.609 62.377 66.098 61.098 66.098 z"
+                      style={{
+                        stroke: "none",
+                        strokeWidth: 1,
+                        strokeDasharray: "none",
+                        strokeLinecap: "butt",
+                        strokeLinejoin: "miter",
+                        strokeMiterlimit: 10,
+                        fill: "rgb(255,255,255)",
+                        fillRule: "nonzero",
+                        opacity: 1,
+                      }}
+                      transform=" matrix(1 0 0 1 0 0) "
+                      strokeLinecap="round"
+                    />
+                  </g>
+                </g>
+              </svg>
+            </motion.div>
+          ) : null}
+        </motion.div>
+      ) : null}
+      {!notFound ? (
+        <div className="mt-8">
+          <motion.div
+            variants={animateUp}
+            className="grid grid-flow-row grid-cols-1 mb-6 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
+            {searchResults?.map((blog) => (
+              <Link key={blog?._id} href={`/blog/${blog?.slug}`}>
+                <motion.div
+                  initial="initial"
+                  animate="animate"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ duration: 0.2 }}
+                  className="select-none cursor-pointer group"
+                >
+                  <Image
+                    src={blog?.image}
+                    alt={`${blog?.title} blog for`}
+                    className="object-cover object-center w-full rounded-lg shadow-md"
+                    width={1600}
+                    height={900}
+                  />
+                  <div className="relative px-4 -mt-10">
+                    <motion.div className="p-5 card group-hover:border-orange-500 bg-white">
+                      <h2 className="text-xl mb-2 font-extrabold">
+                        {blog?.title}
+                      </h2>
+                      <p className="text-sm text-gray-700 font-medium">
+                        {parseDate(blog?.updatedAt)}
+                      </p>
+                      <div className="flex flex-wrap items-baseline mb-3">
+                        <span className="inline-block px-2 py-1 pt-[5px] mr-1 text-[0.6rem] font-semibold tracking-wide text-black rounded-full bg-gray-200 group-hover:bg-orange-100">
+                          Blog
+                        </span>
+                      </div>
+                    </motion.div>
+                  </div>
+                </motion.div>
+              </Link>
+            ))}
+          </motion.div>
+        </div>
+      ) : (
+        <NoResults />
+      )}
+    </motion.div>
+  );
+};
