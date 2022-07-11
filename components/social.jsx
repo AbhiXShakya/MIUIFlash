@@ -1,7 +1,10 @@
 export function Social() {
   return (
     <div className="flex mt-4 space-x-6 sm:justify-center sm:mt-0">
-      <a href="#" className="text-gray-500 hover:text-gray-900">
+      <a
+        href="#"
+        className="dark:text-gray-500 hover:dark:text-gray-600 text-gray-900"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="w-5 h-5"
@@ -14,7 +17,10 @@ export function Social() {
           <path d="M46.137,6.552c-0.75-0.636-1.928-0.727-3.146-0.238l-0.002,0C41.708,6.828,6.728,21.832,5.304,22.445	c-0.259,0.09-2.521,0.934-2.288,2.814c0.208,1.695,2.026,2.397,2.248,2.478l8.893,3.045c0.59,1.964,2.765,9.21,3.246,10.758	c0.3,0.965,0.789,2.233,1.646,2.494c0.752,0.29,1.5,0.025,1.984-0.355l5.437-5.043l8.777,6.845l0.209,0.125	c0.596,0.264,1.167,0.396,1.712,0.396c0.421,0,0.825-0.079,1.211-0.237c1.315-0.54,1.841-1.793,1.896-1.935l6.556-34.077	C47.231,7.933,46.675,7.007,46.137,6.552z M22,32l-3,8l-3-10l23-17L22,32z" />
         </svg>
       </a>
-      <a href="#" className="text-gray-500 hover:text-gray-900">
+      <a
+        href="#"
+        className="dark:text-gray-500 hover:dark:text-gray-600 text-gray-900"
+      >
         <svg
           className="w-5 h-5"
           fill="currentColor"
@@ -28,7 +34,10 @@ export function Social() {
           />
         </svg>
       </a>
-      <a href="#" className="text-gray-500 hover:text-gray-900">
+      <a
+        href="#"
+        className="dark:text-gray-500 hover:dark:text-gray-600 text-gray-900"
+      >
         <svg
           className="w-5 h-5"
           fill="currentColor"
@@ -42,7 +51,10 @@ export function Social() {
           />
         </svg>
       </a>
-      <a href="#" className="text-gray-500 hover:text-gray-900">
+      <a
+        href="#"
+        className="dark:text-gray-500 hover:dark:text-gray-600 text-gray-900"
+      >
         <svg
           className="w-5 h-5"
           fill="currentColor"
@@ -52,7 +64,10 @@ export function Social() {
           <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
         </svg>
       </a>
-      <a href="#" className="text-gray-500 hover:text-gray-900">
+      <a
+        href="#"
+        className="dark:text-gray-500 hover:dark:text-gray-600 text-gray-900"
+      >
         <svg
           className="w-5 h-5"
           fill="currentColor"

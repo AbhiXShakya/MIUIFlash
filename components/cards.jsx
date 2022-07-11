@@ -29,7 +29,7 @@ export const DeviceCards = ({ data, type }) => {
   useEffect(() => {
     if (searchTerm.length > 0) {
       const results = search(searchTerm, data, ["name", "codename"]);
-      console.log(results);
+
       if (results.length > 0) {
         setNotFound(false);
         setSearchResults(results);
@@ -204,7 +204,7 @@ export const DeviceCards = ({ data, type }) => {
                 </motion.div>
                 <div className="text-center">
                   <h3 className="font-bold text-xl">{item?.name}</h3>
-                  <p className="text-sm text-gray-700 mt-1 font-medium">
+                  <p className="text-sm dark:text-gray-400 text-gray-700 mt-1 font-medium">
                     ({parseCodename(item?.codename)})
                   </p>
                 </div>
@@ -257,7 +257,7 @@ export const RomCards = ({ data, device }) => {
               </motion.div>
               <div className="text-center">
                 <h3 className="font-bold text-xl">{rom?.name}</h3>
-                <p className="text-sm text-gray-700 mt-1 font-medium">
+                <p className="text-sm dark:text-gray-400 text-gray-700 mt-1 font-medium">
                   (by {rom?.owner})
                 </p>
               </div>
@@ -302,7 +302,7 @@ export const AllRomCards = ({ data }) => {
               </motion.div>
               <div className="text-center">
                 <h3 className="font-bold text-xl">{rom?.name}</h3>
-                <p className="text-sm text-gray-700 mt-1 font-medium">
+                <p className="text-sm dark:text-gray-400 text-gray-700 mt-1 font-medium">
                   (by {rom?.owner})
                 </p>
               </div>
@@ -334,7 +334,7 @@ export const PortCards = ({ ports, device, rom, type }) => {
         "miuiType",
         "updatedAt",
       ]);
-      console.log(results);
+
       if (results.length > 0) {
         setNotFound(false);
         setSearchResults(results);
@@ -504,12 +504,12 @@ export const PortCards = ({ ports, device, rom, type }) => {
                     height={900}
                   />
                   <div className="relative px-4 -mt-10">
-                    <motion.div className="p-5 card group-hover:border-orange-500 bg-white">
+                    <motion.div className="p-5 card group-hover:border-orange-500 bg-white dark:bg-black">
                       <h2 className="text-xl mb-2 font-extrabold">
                         {rom?.name}&nbsp;
                         {port?.miuiVersion}
                       </h2>
-                      <p className="text-sm text-gray-700 font-medium">
+                      <p className="text-sm dark:text-gray-400 text-gray-700 font-medium">
                         {parseDate(port?.updatedAt)}
                       </p>
                       <div className="mt-1">
@@ -518,13 +518,13 @@ export const PortCards = ({ ports, device, rom, type }) => {
                         </p>
                       </div>
                       <div className="flex flex-wrap items-baseline mb-3">
-                        <span className="inline-block px-2 py-1 pt-[5px] mr-1 text-[0.6rem] font-semibold tracking-wide text-black rounded-full bg-gray-200 group-hover:bg-orange-100">
+                        <span className="inline-block px-2 py-1 dark:text-black pt-[5px] mr-1 text-[0.6rem] font-semibold tracking-wide  rounded-full bg-gray-200 group-hover:bg-orange-100">
                           {titleCase(port?.miuiType)}
                         </span>
-                        <span className="inline-block px-2 py-1 pt-[5px] mr-1 text-[0.6rem] font-semibold tracking-wide text-black rounded-full bg-gray-200 group-hover:bg-orange-100">
+                        <span className="inline-block px-2 py-1 dark:text-black pt-[5px] mr-1 text-[0.6rem] font-semibold tracking-wide  rounded-full bg-gray-200 group-hover:bg-orange-100">
                           Android {port?.androidVersion}
                         </span>
-                        <span className="inline-block px-2 py-1 pt-[5px] mr-1 text-[0.6rem] font-semibold tracking-wide text-black rounded-full bg-gray-200 group-hover:bg-orange-100">
+                        <span className="inline-block px-2 py-1 dark:text-black pt-[5px] mr-1 text-[0.6rem] font-semibold tracking-wide  rounded-full bg-gray-200 group-hover:bg-orange-100">
                           {titleCase(port?.status)}
                         </span>
                       </div>
@@ -557,7 +557,7 @@ export const MiuiUpdateDevices = ({ data }) => {
   useEffect(() => {
     if (searchTerm.length > 0) {
       const results = searchArray(searchTerm, data);
-      console.log(results);
+
       if (results.length > 0) {
         setNotFound(false);
         setSearchResults(results);
@@ -733,19 +733,19 @@ export const MiuiUpdateDevices = ({ data }) => {
                   </svg>
                 </motion.div>
                 <div className="text-center">
-                  <h3 className="font-bold text-black text-3xl mb-5">
+                  <h3 className="font-bold  text-3xl mb-5">
                     {titleCase(item?.deviceId)}
                   </h3>
-                  <ul>
+                  <ol>
                     {item?.devices.map((device) => (
                       <li
                         key={device?.id}
-                        className="text-base text-gray-700 mb-1"
+                        className="text-base dark:text-gray-400 text-gray-700 mb-1"
                       >
                         ({device?.name})
                       </li>
                     ))}
-                  </ul>
+                  </ol>
                 </div>
               </motion.div>
             </Link>
@@ -773,7 +773,7 @@ export const MiuiDevices = ({ data }) => {
   useEffect(() => {
     if (searchTerm.length > 0) {
       const results = searchArray(searchTerm, data.devices);
-      console.log(results);
+
       if (results.length > 0) {
         setNotFound(false);
         setSearchResults(results);
@@ -951,14 +951,14 @@ export const MiuiDevices = ({ data }) => {
                   </svg>
                 </motion.div>
                 <div className="text-center">
-                  <h3 className="font-bold text-black text-3xl mb-5">
+                  <h3 className="font-bold  text-3xl mb-5">
                     {titleCase(item?.name)}
                   </h3>
-                  <ul>
-                    <li className="text-base text-gray-700 mb-1">
+                  <ol>
+                    <li className="text-base dark:text-gray-400 text-gray-700 mb-1">
                       ( {titleCase(item?.id.replaceAll("_", " "))} )
                     </li>
-                  </ul>
+                  </ol>
                 </div>
               </motion.div>
             </Link>
@@ -1004,7 +1004,6 @@ export const DeviceUpdatedRoms = ({ data, device }) => {
   useEffect(() => {
     if (searchTerm.length > 0) {
       const results = searchArray(searchTerm, data);
-      console.log(results);
       if (results.length > 0) {
         setNotFound(false);
         setSearchResults(results);
@@ -1170,14 +1169,14 @@ export const DeviceUpdatedRoms = ({ data, device }) => {
                 </h1>
               </motion.div>
               <div className="text-center">
-                <h3 className="font-bold text-black text-3xl mb-1">
+                <h3 className="font-bold  text-3xl mb-1">
                   {titleCase(item?.miuiVersion)}
                 </h3>
-                <ul>
-                  <li className="text-base text-gray-700 mb-1">
+                <ol>
+                  <li className="text-base dark:text-gray-400 text-gray-700 mb-1">
                     ( {titleCase(item?.status ? item.status : "stable")} )
                   </li>
-                </ul>
+                </ol>
               </div>
               <div className="flex flex-col p-6">
                 <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -1186,51 +1185,51 @@ export const DeviceUpdatedRoms = ({ data, device }) => {
                       <table className="min-w-full">
                         <tbody>
                           <tr className="border-b">
-                            <td className="px-2 py-4 whitespace-nowrap text-sm md:text-lg font-bold text-gray-900">
+                            <td className="px-2 py-4 whitespace-nowrap text-sm md:text-lg font-bold dark:text-gray-300 text-gray-900">
                               MIUI Version
                             </td>
-                            <td className="text-sm md:text-lg text-gray-900 font-medium px-2 py-4 whitespace-wrap">
+                            <td className="text-sm md:text-lg dark:text-gray-300 text-gray-900 font-medium px-2 py-4 whitespace-wrap">
                               {item?.miuiVersion}
                             </td>
                           </tr>
                           <tr className="border-b">
-                            <td className="px-2 py-4 whitespace-nowrap text-sm md:text-lg font-bold text-gray-900">
+                            <td className="px-2 py-4 whitespace-nowrap text-sm md:text-lg font-bold dark:text-gray-300 text-gray-900">
                               Android Version
                             </td>
-                            <td className="text-sm md:text-lg text-gray-900 font-medium px-2 py-4 whitespace-wrap">
+                            <td className="text-sm md:text-lg dark:text-gray-300 text-gray-900 font-medium px-2 py-4 whitespace-wrap">
                               {item?.androidVersion}
                             </td>
                           </tr>
                           <tr className="border-b">
-                            <td className="px-2 py-4 whitespace-nowrap text-sm md:text-lg font-bold text-gray-900">
+                            <td className="px-2 py-4 whitespace-nowrap text-sm md:text-lg font-bold dark:text-gray-300 text-gray-900">
                               Codename
                             </td>
-                            <td className="text-sm md:text-lg text-gray-900 font-medium px-2 py-4 whitespace-wrap">
+                            <td className="text-sm md:text-lg dark:text-gray-300 text-gray-900 font-medium px-2 py-4 whitespace-wrap">
                               {device?.deviceId}
                             </td>
                           </tr>
                           <tr className="border-b">
-                            <td className="px-2 py-4 whitespace-nowrap text-sm md:text-lg font-bold text-gray-900">
+                            <td className="px-2 py-4 whitespace-nowrap text-sm md:text-lg font-bold dark:text-gray-300 text-gray-900">
                               Updated
                             </td>
-                            <td className="text-sm md:text-lg text-gray-900 font-medium px-2 py-4 whitespace-wrap">
+                            <td className="text-sm md:text-lg dark:text-gray-300 text-gray-900 font-medium px-2 py-4 whitespace-wrap">
                               {parseDate(item?.date)}
                             </td>
                           </tr>
                           <tr className="border-b">
-                            <td className="px-2 py-4 whitespace-nowrap text-sm md:text-lg font-bold text-gray-900">
+                            <td className="px-2 py-4 whitespace-nowrap text-sm md:text-lg font-bold dark:text-gray-300 text-gray-900">
                               Size
                             </td>
-                            <td className="text-sm md:text-lg text-gray-900 font-medium px-2 py-4 whitespace-wrap">
+                            <td className="text-sm md:text-lg dark:text-gray-300 text-gray-900 font-medium px-2 py-4 whitespace-wrap">
                               {item?.fileSize}
                             </td>
                           </tr>
                           {item?.otaFor ? (
                             <tr className="border-b">
-                              <td className="px-2 py-4 whitespace-nowrap text-sm md:text-lg font-bold text-gray-900">
+                              <td className="px-2 py-4 whitespace-nowrap text-sm md:text-lg font-bold dark:text-gray-300 text-gray-900">
                                 OTA Apply For
                               </td>
-                              <td className="text-sm md:text-lg text-gray-900 font-medium px-2 py-4 whitespace-wrap">
+                              <td className="text-sm md:text-lg dark:text-gray-300 text-gray-900 font-medium px-2 py-4 whitespace-wrap">
                                 {item?.otaFor}
                               </td>
                             </tr>
@@ -1262,8 +1261,6 @@ export const BlogCards = ({ data }) => {
   const [searchResults, setSearchResults] = useState(data);
   const [notFound, setNotFound] = useState(false);
   const [isSearch, setIsSearch] = useState(false);
-
-  console.log(data);
 
   useEffect(() => {
     if (data.length == 0) {
@@ -1433,15 +1430,15 @@ export const BlogCards = ({ data }) => {
                     height={900}
                   />
                   <div className="relative px-4 -mt-10">
-                    <motion.div className="p-5 card group-hover:border-orange-500 bg-white">
+                    <motion.div className="p-5 card group-hover:border-orange-500 bg-white dark:bg-black">
                       <h2 className="text-xl mb-2 font-extrabold">
                         {blog?.title}
                       </h2>
-                      <p className="text-sm text-gray-700 font-medium">
+                      <p className="text-sm dark:text-gray-400 text-gray-700 font-medium">
                         {parseDate(blog?.updatedAt)}
                       </p>
                       <div className="flex flex-wrap items-baseline mb-3">
-                        <span className="inline-block px-2 py-1 pt-[5px] mr-1 text-[0.6rem] font-semibold tracking-wide text-black rounded-full bg-gray-200 group-hover:bg-orange-100">
+                        <span className="inline-block px-2 py-1 dark:text-black pt-[5px] mr-1 text-[0.6rem] font-semibold tracking-wide  rounded-full bg-gray-200 group-hover:bg-orange-100">
                           Blog
                         </span>
                       </div>

@@ -23,7 +23,7 @@ export function HomeHero() {
           What is MIUIFlash
         </motion.h2>
         <motion.div variants={animateUp}>
-          <p className="max-w-xl mb-8 text-gray-700">
+          <p className="max-w-xl mb-8 dark:text-gray-300 text-gray-700">
             Welcome Guys to MIUIFlash, here you will get all the required
             Information & Updates of MIUI. Lets Enjoy this Journey Together with
             a Flash Welcome Guys to MIUIFlash, here you will get all the

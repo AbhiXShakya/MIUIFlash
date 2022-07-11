@@ -24,7 +24,7 @@
   }
 
   *::-webkit-scrollbar-track {
-    background: white;
+    @apply bg-white dark:bg-black;
   }
 
   *::-webkit-scrollbar-thumb {
@@ -126,7 +126,7 @@
   }
 
   .blog p {
-    @apply text-xl font-normal leading-snug mb-8;
+    @apply text-xl font-normal leading-snug mb-8 dark:text-gray-300;
   }
 
   .blog h2 {
@@ -143,7 +143,38 @@
 
   .blog ul,
   .blog ol {
-    @apply list-disc ml-4 mb-10 -mt-4;
+    @apply ml-4 mb-10 -mt-4;
+  }
+
+  ol {
+    list-style: none;
+    counter-reset: item;
+  }
+  ol li {
+    counter-increment: item;
+    margin-bottom: 5px;
+  }
+  ol li:before {
+    margin-right: 10px;
+    content: counter(item, decimal) ". ";
+    border-radius: 100%;
+    color: #f97316;
+    width: 1.2em;
+    text-align: center;
+    display: inline-block;
+  }
+
+  ul {
+    padding-left: 20px;
+  }
+
+  ul li::before {
+    content: "\2022";
+    color: #f97316;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
   }
 }
 
@@ -165,6 +196,10 @@
   }
 
   .linkHover li:after {
+    @apply bg-black dark:bg-white;
+  }
+
+  .linkHover li:after {
     content: "";
     position: absolute;
     width: 0;
@@ -172,15 +207,17 @@
     display: block;
     margin-top: 0px;
     right: 0;
-    background: #000;
     transition: width 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
     -webkit-transition: width 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
   }
 
   .linkHover li:hover:after {
+    @apply bg-black dark:bg-white;
+  }
+
+  .linkHover li:hover:after {
     width: 100%;
     left: 0;
-    background: #000;
   }
 
   .currentLink {
@@ -215,10 +252,10 @@
     transition: cubic-bezier(0.77, 0.2, 0.05, 1) 0s;
   }
   .menuHamburger {
-    @apply grid relative z-10 w-10 h-10 cursor-pointer before:content-[''] before:w-10 before:h-[5px] before:top-[30%] before:bg-black before:absolute before:will-change-transform before:easeCustom before:z-20 after:content-[''] after:w-[25px] after:h-[5px] after:bottom-[30%] after:bg-black after:absolute after:will-change-transform after:easeCustom after:z-30 before:duration-500 after:duration-500 place-items-end items-center;
+    @apply grid relative z-10 w-10 h-10 cursor-pointer before:content-[''] before:w-10 before:h-[5px] before:top-[30%] dark:before:bg-gray-100 before:bg-black before:absolute before:will-change-transform before:easeCustom before:z-20 after:content-[''] after:w-[25px] after:h-[5px] after:bottom-[30%] dark:after:bg-gray-100 after:bg-black after:absolute after:will-change-transform after:easeCustom after:z-30 before:duration-500 after:duration-500 place-items-end items-center;
   }
 
   .menuCross {
-    @apply grid relative z-10 w-10 h-10 cursor-pointer before:content-[''] before:w-[35px] before:h-[5px] before:top-[24%] before:bg-black before:absolute before:will-change-transform before:easeCustom before:z-20 before:-rotate-45 before:translate-y-[7.75px] after:content-[''] after:w-[35px] after:h-[5px] after:bottom-[24%] after:bg-black after:absolute after:will-change-transform after:easeCustom after:z-30 after:rotate-45 after:-translate-y-[8px] before:duration-500 after:duration-500 place-items-end items-center;
+    @apply grid relative z-10 w-10 h-10 cursor-pointer before:content-[''] before:w-[35px] before:h-[5px] before:top-[24%] dark:before:bg-gray-100 before:bg-black before:absolute before:will-change-transform before:easeCustom before:z-20 before:-rotate-45 before:translate-y-[7.75px] after:content-[''] after:w-[35px] after:h-[5px] after:bottom-[24%] dark:after:bg-gray-100 after:bg-black after:absolute after:will-change-transform after:easeCustom after:z-30 after:rotate-45 after:-translate-y-[8px] before:duration-500 after:duration-500 place-items-end items-center;
   }
 }

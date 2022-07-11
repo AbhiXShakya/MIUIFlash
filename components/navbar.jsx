@@ -24,6 +24,7 @@ export function Navbar() {
       animate="animate"
       variants={animateNav}
       exit={{ y: "-30%", opacity: 0, transition: { ease: easing } }}
+      className="dark:bg-black dark:text-gray-100"
     >
       <div
         id="mobileNavbar"
@@ -32,10 +33,10 @@ export function Navbar() {
         }}
         className={`absolute w-full h-[120%] duration-[0.8s] z-50 easeCustom ${
           isOpen ? "translate-y-0" : "-translate-y-[200vh]"
-        } bg-white pclamp`}
+        } bg-white dark:bg-black pclamp`}
       >
         <div className="translate-y-[34%]">
-          <ul className="flex flex-col items-center justify-center w-full m-auto space-y-6 text-4xl font-bold linkHover">
+          <ol className="flex flex-col items-center justify-center w-full m-auto space-y-6 text-4xl font-bold linkHover">
             <li
               onClick={() => {
                 setIsOpen(false);
@@ -80,7 +81,7 @@ export function Navbar() {
                 router.pathname.includes("/about") ? "currentLink" : ""
               }
             >
-              <Link href="#">Blog</Link>
+              <Link href="/blog">Blog</Link>
             </li>
             <li
               onClick={() => {
@@ -92,7 +93,7 @@ export function Navbar() {
             >
               <Link href="#">Dark Mode</Link>
             </li>
-          </ul>
+          </ol>
           <div className="flex justify-center w-full mt-9">
             <Social />
           </div>
@@ -119,7 +120,7 @@ export function Navbar() {
         </Link>
 
         <div className="hidden lg:flex lg:items-center">
-          <ul className="flex space-x-6 text-xl font-bold linkHover">
+          <ol className="flex space-x-6 text-xl font-bold linkHover">
             <li className={router.pathname == "/" ? "currentLink" : ""}>
               <Link href="/">Home</Link>
             </li>
@@ -147,7 +148,7 @@ export function Navbar() {
                 router.pathname.includes("/about") ? "currentLink" : ""
               }
             >
-              <Link href="#">Blog</Link>
+              <Link href="/blog">Blog</Link>
             </li>
             <li
               className={
@@ -156,7 +157,7 @@ export function Navbar() {
             >
               <Link href="#">Dark Mode</Link>
             </li>
-          </ul>
+          </ol>
         </div>
         <div className="z-50 flex items-center lg:hidden">
           <div

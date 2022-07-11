@@ -21,7 +21,7 @@ export function Rom({ rom, devices }) {
       <div className="mb-12">
         <motion.div variants={animateDown}>
           <h1 className="pageH1 mb-4">{titleCase(rom?.name)}</h1>
-          <h2 className="text-2xl md:text-4xl mb-4 text-gray-800">
+          <h2 className="text-2xl md:text-4xl mb-4 dark:text-gray-300 text-gray-800">
             (By&nbsp;{titleCase(rom?.owner)})
           </h2>
         </motion.div>

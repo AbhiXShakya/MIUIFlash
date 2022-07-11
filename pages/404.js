@@ -7,7 +7,7 @@ export default function FourOhFour() {
         <h1 className="text-center font-extrabold text-8xl md:text-[16rem] lg:text-[20rem] text-orange-500 ">
           404
         </h1>
-        <p className="text-center font-extrabold text-4xl md:text-[4rem] lg:text-[5rem] text-gray-800">
+        <p className="text-center font-extrabold text-4xl md:text-[4rem] lg:text-[5rem] dark:text-gray-300 text-gray-800">
           Page Not Found
         </p>
       </div>

@@ -31,7 +31,7 @@ const Rom = ({ rom, device, ports }) => {
       <div className="mb-12">
         <motion.div variants={animateDown}>
           <h1 className="pageH1 mb-4">{rom?.name}</h1>
-          <h2 className="text-xl md:text-4xl mb-4 text-gray-800">
+          <h2 className="text-xl md:text-4xl mb-4 dark:text-gray-300 text-gray-800">
             ({titleCase(device?.name)})
           </h2>
         </motion.div>

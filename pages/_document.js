@@ -7,7 +7,7 @@ export default function Document() {
         <meta name="robots" content="noindex, nofollow" />
         <meta name="googlebot" content="noindex" />
       </Head>
-      <body className="font-metro">
+      <body className="font-metro dark:bg-black text-black dark:text-gray-100">
         <Main />
         <NextScript />
       </body>

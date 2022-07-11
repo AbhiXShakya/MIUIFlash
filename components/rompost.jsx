@@ -61,7 +61,7 @@ export const RomPost = ({ rom, port, device }) => {
               <h1 className="font-extrabold text-4xl mb-4">
                 {rom?.name}&nbsp;{port?.miuiVersion}
               </h1>
-              <h2 className="text-2xl md:text-4xl mb-4 text-gray-800">
+              <h2 className="text-2xl md:text-4xl mb-4 dark:text-gray-300 text-gray-800">
                 ({parseCodename(device?.codename)})
               </h2>
             </motion.div>
@@ -75,50 +75,50 @@ export const RomPost = ({ rom, port, device }) => {
                       <table className="min-w-full">
                         <tbody>
                           <tr className="border-b">
-                            <td className="px-2 py-4 whitespace-nowrap text-lg font-bold text-gray-900">
+                            <td className="px-2 py-4 whitespace-nowrap text-lg font-bold dark:text-gray-300 text-gray-900">
                               MIUI Version
                             </td>
-                            <td className="text-lg text-gray-900 font-medium px-2 py-4 whitespace-nowrap">
+                            <td className="text-lg dark:text-gray-300 text-gray-900 font-medium px-2 py-4 whitespace-nowrap">
                               {port?.miuiVersion}
                             </td>
                           </tr>
                           <tr className="border-b">
-                            <td className="px-2 py-4 whitespace-nowrap text-lg font-bold text-gray-900">
+                            <td className="px-2 py-4 whitespace-nowrap text-lg font-bold dark:text-gray-300 text-gray-900">
                               Android Version
                             </td>
-                            <td className="text-lg text-gray-900 font-medium px-2 py-4 whitespace-nowrap">
+                            <td className="text-lg dark:text-gray-300 text-gray-900 font-medium px-2 py-4 whitespace-nowrap">
                               {port?.androidVersion}
                             </td>
                           </tr>
                           <tr className="border-b">
-                            <td className="px-2 py-4 whitespace-nowrap text-lg font-bold text-gray-900">
+                            <td className="px-2 py-4 whitespace-nowrap text-lg font-bold dark:text-gray-300 text-gray-900">
                               Device
                             </td>
-                            <td className="text-lg text-gray-900 font-medium px-2 py-4 whitespace-nowrap">
+                            <td className="text-lg dark:text-gray-300 text-gray-900 font-medium px-2 py-4 whitespace-nowrap">
                               {parseCodename(device?.codename)}
                             </td>
                           </tr>
                           <tr className="border-b">
-                            <td className="px-2 py-4 whitespace-nowrap text-lg font-bold text-gray-900">
+                            <td className="px-2 py-4 whitespace-nowrap text-lg font-bold dark:text-gray-300 text-gray-900">
                               Maintainer
                             </td>
-                            <td className="text-lg text-gray-900 font-medium px-2 py-4 whitespace-nowrap">
+                            <td className="text-lg dark:text-gray-300 text-gray-900 font-medium px-2 py-4 whitespace-nowrap">
                               {port?.maintainer}
                             </td>
                           </tr>
                           <tr className="border-b">
-                            <td className="px-2 py-4 whitespace-nowrap text-lg font-bold text-gray-900">
+                            <td className="px-2 py-4 whitespace-nowrap text-lg font-bold dark:text-gray-300 text-gray-900">
                               Status
                             </td>
-                            <td className="text-lg text-gray-900 font-medium px-2 py-4 whitespace-nowrap">
+                            <td className="text-lg dark:text-gray-300 text-gray-900 font-medium px-2 py-4 whitespace-nowrap">
                               {titleCase(port?.status)}
                             </td>
                           </tr>
                           <tr className="border-b">
-                            <td className="px-2 py-4 whitespace-nowrap text-lg font-bold text-gray-900">
+                            <td className="px-2 py-4 whitespace-nowrap text-lg font-bold dark:text-gray-300 text-gray-900">
                               Updated
                             </td>
-                            <td className="text-lg text-gray-900 font-medium px-2 py-4 whitespace-nowrap">
+                            <td className="text-lg dark:text-gray-300 text-gray-900 font-medium px-2 py-4 whitespace-nowrap">
                               {parseDate(port?.updatedAt)}
                             </td>
                           </tr>
@@ -132,7 +132,7 @@ export const RomPost = ({ rom, port, device }) => {
           </div>
         </div>
         <h3 className="font-bold text-3xl mt-12 mb-4">Supported Devices:</h3>
-        <ul className="list-disc list-inside font-semibold">
+        <ul className="dark:text-gray-300 font-semibold">
           {device?.devices?.map((device) => (
             <li className="mt-2" key={device?.devices?.indexOf(device)}>
               {device}
@@ -145,7 +145,7 @@ export const RomPost = ({ rom, port, device }) => {
         >
           <div className="md:max-w-[40%]">
             <h3 className="mt-8 font-bold text-3xl mb-4">MIUI Changelogs:</h3>
-            <ul className="list-decimal list-inside font-semibold">
+            <ol className="dark:text-gray-300  font-semibold">
               {port?.miuiChangelogs?.split("--").map((changelog) => (
                 <li
                   className="mt-2"
@@ -154,11 +154,11 @@ export const RomPost = ({ rom, port, device }) => {
                   {changelog}
                 </li>
               ))}
-            </ul>
+            </ol>
           </div>
           <div className="md:max-w-[40%]">
             <h3 className="mt-8 font-bold text-3xl mb-4">Device Changelogs:</h3>
-            <ul className="list-decimal list-inside font-semibold">
+            <ol className="dark:text-gray-300 font-semibold">
               {port?.deviceChangelogs?.split("--").map((changelog) => (
                 <li
                   className="mt-2"
@@ -167,7 +167,7 @@ export const RomPost = ({ rom, port, device }) => {
                   {changelog}
                 </li>
               ))}
-            </ul>
+            </ol>
           </div>
         </motion.div>
         <motion.div
@@ -176,17 +176,17 @@ export const RomPost = ({ rom, port, device }) => {
         >
           <div className="md:max-w-[40%]">
             <h3 className="mt-8 font-bold text-3xl mb-4">Notes:</h3>
-            <ul className="list-decimal list-inside font-semibold">
+            <ol className=" font-semibold">
               {port?.notes?.split("--").map((note) => (
                 <li className="mt-2" key={port?.notes?.indexOf(note)}>
                   {note}
                 </li>
               ))}
-            </ul>
+            </ol>
           </div>
           <div className="md:max-w-[40%]">
             <h3 className="mt-8 font-bold text-3xl mb-4">Credits:</h3>
-            <ul className="list-decimal list-inside font-semibold">
+            <ul className=" font-semibuld">
               {port?.credits?.split("--").map((credit) => (
                 <li className="mt-2" key={port?.credits?.indexOf(credit)}>
                   {credit}

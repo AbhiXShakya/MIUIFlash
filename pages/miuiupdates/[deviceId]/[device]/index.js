@@ -32,7 +32,10 @@ const device = ({ data }) => {
         >
           {titleCase(data.model)}
         </motion.h1>
-        <motion.p variants={animateUp} className="font-bold mb-4 text-gray-700">
+        <motion.p
+          variants={animateUp}
+          className="font-bold mb-4 dark:text-gray-400 text-gray-700"
+        >
           ({titleCase(data?.device.replaceAll("-", " "))})
         </motion.p>
         <motion.div variants={animateDown}>
@@ -50,7 +53,7 @@ const device = ({ data }) => {
           <div
             className={`${
               recovery
-                ? "text-black border-0 border-b-4 border-orange-500"
+                ? " border-0 border-b-4 border-orange-500"
                 : "text-gray-500"
             } text-3xl md:text-3xl font-bold cursor-pointer duration-300 inline-block`}
             onClick={() => setRecovery(true)}
@@ -66,7 +69,7 @@ const device = ({ data }) => {
             className={`${
               recovery
                 ? "text-gray-500"
-                : "text-black border-0 border-b-4 border-orange-500"
+                : " border-0 border-b-4 border-orange-500"
             } text-3xl md:text-3xl font-bold cursor-pointer duration-300 inline-block`}
             onClick={() => setRecovery(false)}
           >
