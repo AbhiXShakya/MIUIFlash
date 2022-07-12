@@ -95,8 +95,6 @@ export const DeviceCards = ({ data, type }) => {
                 viewBox="0 0 256 256"
                 xmlSpace="preserve"
               >
-                <desc>Created with Fabric.js 1.7.22</desc>
-                <defs></defs>
                 <g transform="translate(128 128) scale(0.72 0.72)" style={{}}>
                   <g
                     style={{
@@ -400,8 +398,6 @@ export const PortCards = ({ ports, device, rom, type }) => {
                 viewBox="0 0 256 256"
                 xmlSpace="preserve"
               >
-                <desc>Created with Fabric.js 1.7.22</desc>
-                <defs></defs>
                 <g transform="translate(128 128) scale(0.72 0.72)" style={{}}>
                   <g
                     style={{
@@ -625,7 +621,7 @@ export const MiuiUpdateDevices = ({ data }) => {
                 xmlSpace="preserve"
               >
                 <desc></desc>
-                <defs></defs>
+
                 <g transform="translate(128 128) scale(0.72 0.72)" style={{}}>
                   <g
                     style={{
@@ -841,7 +837,7 @@ export const MiuiDevices = ({ data }) => {
                 xmlSpace="preserve"
               >
                 <desc></desc>
-                <defs></defs>
+
                 <g transform="translate(128 128) scale(0.72 0.72)" style={{}}>
                   <g
                     style={{
@@ -1071,7 +1067,7 @@ export const DeviceUpdatedRoms = ({ data, device }) => {
                 xmlSpace="preserve"
               >
                 <desc></desc>
-                <defs></defs>
+
                 <g transform="translate(128 128) scale(0.72 0.72)" style={{}}>
                   <g
                     style={{
@@ -1336,7 +1332,6 @@ export const BlogCards = ({ data }) => {
                 viewBox="0 0 256 256"
                 xmlSpace="preserve"
               >
-                <defs></defs>
                 <g transform="translate(128 128) scale(0.72 0.72)" style={{}}>
                   <g
                     style={{
