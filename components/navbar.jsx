@@ -104,7 +104,7 @@ export function Navbar({ dark, setDark }) {
       </div>
       <nav className="flex justify-between pclamp">
         <Link href="/">
-          <div className="z-50 select-none">
+          <motion.div className="z-50 select-none duration-1000">
             <h1 className="hidden">MIUIFlash</h1>
             <h1 className="z-50 pt-1 text-4xl font-extrabold cursor-pointer">
               MIUI FLA
@@ -119,7 +119,7 @@ export function Navbar({ dark, setDark }) {
               </span>
               H
             </h1>
-          </div>
+          </motion.div>
         </Link>
 
         <div className="hidden lg:flex lg:items-center">
