@@ -6,7 +6,7 @@ import { Social } from "./social";
 import { motion } from "framer-motion";
 import { animateNav, easing } from "../utils/helpers";
 
-export function Navbar() {
+export function Navbar({ dark, setDark }) {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
 
@@ -84,14 +84,13 @@ export function Navbar() {
               <Link href="/blog">Blog</Link>
             </li>
             <li
+              className="cursor-pointer"
               onClick={() => {
-                setIsOpen(false);
+                setDark(!dark);
+                localStorage.setItem("dark", !dark);
               }}
-              className={
-                router.pathname.includes("/contact") ? "currentLink" : ""
-              }
             >
-              <Link href="#">Dark Mode</Link>
+              {dark ? "Light Mode" : "Dark Mode"}
             </li>
           </ol>
           <div className="flex justify-center w-full mt-9">
@@ -151,11 +150,13 @@ export function Navbar() {
               <Link href="/blog">Blog</Link>
             </li>
             <li
-              className={
-                router.pathname.includes("/contact") ? "currentLink" : ""
-              }
+              className="cursor-pointer"
+              onClick={() => {
+                setDark(!dark);
+                localStorage.setItem("dark", !dark);
+              }}
             >
-              <Link href="#">Dark Mode</Link>
+              {dark ? "Light Mode" : "Dark Mode"}
             </li>
           </ol>
         </div>

@@ -2,12 +2,29 @@ import { Footer } from "../components";
 import { Navbar } from "../components";
 import "../styles/globals.css";
 import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 function MyApp({ Component, pageProps, router }) {
+  const [dark, setDark] = useState(false);
+
+  useEffect(() => {
+    if (localStorage.getItem("dark")) {
+      setDark(localStorage.getItem("dark"));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (dark) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [dark]);
+
   return (
     <>
       <AnimatePresence exitBeforeEnter>
-        <Navbar key={`nav${router.route}`} />
+        <Navbar dark={dark} setDark={setDark} key={`nav${router.route}`} />
         <motion.div
           initial="pageInitial"
           animate="pageAnimate"

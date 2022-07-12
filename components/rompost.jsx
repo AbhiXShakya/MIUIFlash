@@ -6,7 +6,6 @@ import {
   animateDown,
   animateUp,
 } from "../utils/helpers";
-import Link from "next/link";
 import Image from "next/image";
 import { AButton } from ".";
 import { motion } from "framer-motion";
@@ -132,18 +131,20 @@ export const RomPost = ({ rom, port, device }) => {
           </div>
         </div>
         <h3 className="font-bold text-3xl mt-12 mb-4">Supported Devices:</h3>
-        <ul className="dark:text-gray-300 font-semibold">
-          {device?.devices?.map((device) => (
-            <li className="mt-2" key={device?.devices?.indexOf(device)}>
-              {device}
-            </li>
-          ))}
-        </ul>
+        <div className="customlist">
+          <ul className="dark:text-gray-300 font-semibold">
+            {device?.devices?.map((device) => (
+              <li className="mt-2" key={device?.devices?.indexOf(device)}>
+                {device}
+              </li>
+            ))}
+          </ul>
+        </div>
         <motion.div
           variants={animateDown}
           className="mt-10 mb-10 md:flex justify-between flex-wrap"
         >
-          <div className="md:max-w-[40%]">
+          <div className="md:max-w-[40%] customlist">
             <h3 className="mt-8 font-bold text-3xl mb-4">MIUI Changelogs:</h3>
             <ol className="dark:text-gray-300  font-semibold">
               {port?.miuiChangelogs?.split("--").map((changelog) => (
@@ -156,7 +157,7 @@ export const RomPost = ({ rom, port, device }) => {
               ))}
             </ol>
           </div>
-          <div className="md:max-w-[40%]">
+          <div className="md:max-w-[40%] customlist">
             <h3 className="mt-8 font-bold text-3xl mb-4">Device Changelogs:</h3>
             <ol className="dark:text-gray-300 font-semibold">
               {port?.deviceChangelogs?.split("--").map((changelog) => (
@@ -174,7 +175,7 @@ export const RomPost = ({ rom, port, device }) => {
           variants={animateUp}
           className="mb-10 md:flex justify-between flex-wrap"
         >
-          <div className="md:max-w-[40%]">
+          <div className="md:max-w-[40%] customlist">
             <h3 className="mt-8 font-bold text-3xl mb-4">Notes:</h3>
             <ol className=" font-semibold">
               {port?.notes?.split("--").map((note) => (
@@ -184,7 +185,7 @@ export const RomPost = ({ rom, port, device }) => {
               ))}
             </ol>
           </div>
-          <div className="md:max-w-[40%]">
+          <div className="md:max-w-[40%] customlist">
             <h3 className="mt-8 font-bold text-3xl mb-4">Credits:</h3>
             <ul className=" font-semibuld">
               {port?.credits?.split("--").map((credit) => (

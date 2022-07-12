@@ -11,7 +11,9 @@ export const Breadcrumbs = ({ breadm }) => {
               <a className="text-orange-500">{item.name}</a>
             </Link>
             {index + 1 != breadm.length ? (
-              <span className=" text-gray-700 ">&nbsp;&gt;&nbsp;</span>
+              <span className="text-gray-700 dark:text-gray-400">
+                &nbsp;&gt;&nbsp;
+              </span>
             ) : null}
           </>
         );

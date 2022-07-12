@@ -1150,7 +1150,7 @@ export const DeviceUpdatedRoms = ({ data, device }) => {
             <motion.div
               key={item?.miuiVersion}
               whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              // whileTap={{ scale: 0.95 }}
               transition={{ duration: 0 }}
               className="card"
             >

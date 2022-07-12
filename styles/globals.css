@@ -146,15 +146,15 @@
     @apply ml-4 mb-10 -mt-4;
   }
 
-  ol {
+  .customlist ol {
     list-style: none;
     counter-reset: item;
   }
-  ol li {
+  .customlist ol li {
     counter-increment: item;
     margin-bottom: 5px;
   }
-  ol li:before {
+  .customlist ol li:before {
     margin-right: 10px;
     content: counter(item, decimal) ". ";
     border-radius: 100%;
@@ -164,11 +164,11 @@
     display: inline-block;
   }
 
-  ul {
+  .customlist ul {
     padding-left: 20px;
   }
 
-  ul li::before {
+  .customlist ul li::before {
     content: "\2022";
     color: #f97316;
     font-weight: bold;
