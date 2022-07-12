@@ -28,10 +28,10 @@ function MyApp({ Component, pageProps, router }) {
     } else {
       if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
         setDark(true);
-        localStorage.setItem("dark", true);
+        // localStorage.setItem("dark", true);
       } else {
         setDark(false);
-        localStorage.setItem("dark", false);
+        // localStorage.setItem("dark", false);
       }
     }
   }, []);
