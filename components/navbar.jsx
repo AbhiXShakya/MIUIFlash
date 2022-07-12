@@ -19,6 +19,11 @@ export function Navbar({ dark, setDark }) {
     }
   }, [isOpen]);
 
+  const toggleDark = () => {
+    setDark(!dark);
+    localStorage.setItem("dark", !dark);
+  };
+
   return (
     <motion.header
       initial="initial"
@@ -87,10 +92,7 @@ export function Navbar({ dark, setDark }) {
             <div
               style={{ originX: "50%", originY: "50%" }}
               className="cursor-pointer"
-              onClick={() => {
-                setDark(!dark);
-                localStorage.setItem("dark", !dark);
-              }}
+              onClick={toggleDark}
             >
               {dark ? <SunIcon /> : <MoonIcon />}
             </div>
@@ -154,10 +156,7 @@ export function Navbar({ dark, setDark }) {
             <div
               style={{ originX: "50%", originY: "50%" }}
               className="cursor-pointer"
-              onClick={() => {
-                setDark(!dark);
-                localStorage.setItem("dark", !dark);
-              }}
+              onClick={toggleDark}
             >
               {dark ? <SunIcon /> : <MoonIcon />}
             </div>

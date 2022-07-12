@@ -8,18 +8,27 @@ function MyApp({ Component, pageProps, router }) {
   const [dark, setDark] = useState(false);
 
   useEffect(() => {
-    if (localStorage.getItem("dark")) {
-      setDark(localStorage.getItem("dark"));
-    }
-  }, []);
-
-  useEffect(() => {
     if (dark) {
       document.documentElement.classList.add("dark");
     } else {
       document.documentElement.classList.remove("dark");
     }
   }, [dark]);
+
+  useEffect(() => {
+    const defMode = localStorage.getItem("dark");
+    if (defMode != null) {
+      if (defMode == "true") {
+        setDark(true);
+        document.documentElement.classList.add("dark");
+      } else if (defMode == "false") {
+        setDark(false);
+        document.documentElement.classList.remove("dark");
+      }
+    } else {
+      localStorage.setItem("dark", false);
+    }
+  }, []);
 
   return (
     <>
