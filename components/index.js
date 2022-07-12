@@ -7,3 +7,4 @@ export * from "./social";
 export * from "./rompost";
 export * from "./noResults";
 export * from "./breadcrumbs";
+export * from "./themeMode";

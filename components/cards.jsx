@@ -293,6 +293,7 @@ export const AllRomCards = ({ data }) => {
                 className="relative w-full h-44 mb-6"
               >
                 <Image
+                  className=""
                   src={rom?.image}
                   alt={`All Latest ${rom?.name} ROMs`}
                   layout="fill"

@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { Social } from "./social";
 import { motion } from "framer-motion";
 import { animateNav, easing } from "../utils/helpers";
-import { MoonIcon, SunIcon } from "./themeMode";
+import { MoonIcon, SunIcon } from ".";
 
 export function Navbar({ dark, setDark }) {
   const [isOpen, setIsOpen] = useState(false);
