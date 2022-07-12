@@ -89,13 +89,6 @@ export function Navbar({ dark, setDark }) {
             >
               <Link href="/blog">Blog</Link>
             </li>
-            <div
-              style={{ originX: "50%", originY: "50%" }}
-              className="cursor-pointer"
-              onClick={toggleDark}
-            >
-              {dark ? <SunIcon /> : <MoonIcon />}
-            </div>
           </ol>
           <div className="flex justify-center w-full mt-9">
             <Social />
@@ -158,14 +151,25 @@ export function Navbar({ dark, setDark }) {
               className="cursor-pointer"
               onClick={toggleDark}
             >
-              {dark ? <SunIcon /> : <MoonIcon />}
+              {dark ? (
+                <SunIcon width="1.5rem" height="1.5rem" />
+              ) : (
+                <MoonIcon width="1.5rem" height="1.5rem" />
+              )}
             </div>
           </ol>
         </div>
-        <div className="z-50 flex items-center lg:hidden">
+        <div className="z-50 flex items-center lg:hidden space-x-5">
+          <div className="cursor-pointer m-auto" onClick={toggleDark}>
+            {dark ? (
+              <SunIcon width="1.6rem" height="1.9rem" />
+            ) : (
+              <MoonIcon width="1.6rem" height="1.9rem" />
+            )}
+          </div>
           <div
             onClick={() => setIsOpen(!isOpen)}
-            className={isOpen ? "menuCross" : "menuHamburger"}
+            className={`${isOpen ? "menuCross" : "menuHamburger"} -mt-[0.2rem]`}
           ></div>
         </div>
       </nav>

@@ -6,7 +6,7 @@ const transition = {
   damping: 10,
 };
 
-export const MoonIcon = () => {
+export const MoonIcon = ({ width, height }) => {
   const variants = {
     initial: { scale: 0.6, rotate: 90 },
     animate: { scale: 1, rotate: 0, transition },
@@ -16,8 +16,8 @@ export const MoonIcon = () => {
   return (
     <motion.svg
       xmlns="http://www.w3.org/2000/svg"
-      width="1em"
-      height="1em"
+      width={width}
+      height={height}
       viewBox="0 0 50 50"
       key="moon"
     >
@@ -33,7 +33,7 @@ export const MoonIcon = () => {
   );
 };
 
-export const SunIcon = () => {
+export const SunIcon = ({ width, height }) => {
   const whileTap = { scale: 0.95, rotate: 15 };
 
   const raysVariants = {
@@ -49,8 +49,8 @@ export const SunIcon = () => {
   return (
     <motion.svg
       key="sun"
-      width="1em"
-      height="1em"
+      width={width}
+      height={height}
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
