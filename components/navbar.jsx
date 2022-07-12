@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { Social } from "./social";
 import { motion } from "framer-motion";
 import { animateNav, easing } from "../utils/helpers";
+import { MoonIcon, SunIcon } from "./themeMode";
 
 export function Navbar({ dark, setDark }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -83,15 +84,16 @@ export function Navbar({ dark, setDark }) {
             >
               <Link href="/blog">Blog</Link>
             </li>
-            <li
+            <div
+              style={{ originX: "50%", originY: "50%" }}
               className="cursor-pointer"
               onClick={() => {
                 setDark(!dark);
                 localStorage.setItem("dark", !dark);
               }}
             >
-              {dark ? "Light Mode" : "Dark Mode"}
-            </li>
+              {dark ? <SunIcon /> : <MoonIcon />}
+            </div>
           </ol>
           <div className="flex justify-center w-full mt-9">
             <Social />
@@ -149,15 +151,16 @@ export function Navbar({ dark, setDark }) {
             >
               <Link href="/blog">Blog</Link>
             </li>
-            <li
+            <div
+              style={{ originX: "50%", originY: "50%" }}
               className="cursor-pointer"
               onClick={() => {
                 setDark(!dark);
                 localStorage.setItem("dark", !dark);
               }}
             >
-              {dark ? "Light Mode" : "Dark Mode"}
-            </li>
+              {dark ? <SunIcon /> : <MoonIcon />}
+            </div>
           </ol>
         </div>
         <div className="z-50 flex items-center lg:hidden">
