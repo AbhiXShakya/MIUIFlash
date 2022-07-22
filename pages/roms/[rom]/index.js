@@ -39,14 +39,20 @@ export async function getStaticProps({ params }) {
   let rom = params.rom;
   let res = {};
   try {
-    res = await axios.get(`${process.env.REACT_APP_API_URL}/rom/${rom}`, {
-      responseType: "json",
-    });
+    res = await axios.get(
+      `${process.env.REACT_APP_API_URL}/rom/${rom}?key=THISISSECRET`,
+      {
+        responseType: "json",
+      }
+    );
   } catch (error) {
     console.log(error.message);
-    res = await axios.get(`${process.env.REACT_APP_API_URL}/rom/${rom}`, {
-      responseType: "json",
-    });
+    res = await axios.get(
+      `${process.env.REACT_APP_API_URL}/rom/${rom}?key=THISISSECRET`,
+      {
+        responseType: "json",
+      }
+    );
   }
 
   rom = res.data.data.rom;
@@ -58,14 +64,20 @@ export async function getStaticProps({ params }) {
 export async function getStaticPaths() {
   let romsRes = {};
   try {
-    romsRes = await axios.get(`${process.env.REACT_APP_API_URL}/roms`, {
-      responseType: "json",
-    });
+    romsRes = await axios.get(
+      `${process.env.REACT_APP_API_URL}/roms?key=THISISSECRET`,
+      {
+        responseType: "json",
+      }
+    );
   } catch (error) {
     console.log(error.message);
-    romsRes = await axios.get(`${process.env.REACT_APP_API_URL}/roms`, {
-      responseType: "json",
-    });
+    romsRes = await axios.get(
+      `${process.env.REACT_APP_API_URL}/roms?key=THISISSECRET`,
+      {
+        responseType: "json",
+      }
+    );
   }
 
   const roms = romsRes.data.data;

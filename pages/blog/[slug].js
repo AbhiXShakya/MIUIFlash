@@ -12,6 +12,7 @@ const Rom = ({ data }) => {
       name: "Home",
       href: "/",
     },
+
     {
       name: "Blog",
       href: "/blog",
@@ -64,13 +65,13 @@ export async function getStaticProps(context) {
 
   try {
     portsRes = await axios.get(
-      `${process.env.REACT_APP_API_URL}/blogs/${slug}`,
+      `${process.env.REACT_APP_API_URL}/blogs/${slug}?key=THISISSECRET`,
       { responseType: "json" }
     );
   } catch (error) {
     console.log(error.message);
     portsRes = await axios.get(
-      `${process.env.REACT_APP_API_URL}/blogs/${slug}`,
+      `${process.env.REACT_APP_API_URL}/blogs/${slug}?key=THISISSECRET`,
       { responseType: "json" }
     );
   }
@@ -93,14 +94,20 @@ export async function getStaticProps(context) {
 export async function getStaticPaths() {
   let romsRes = {};
   try {
-    romsRes = await axios.get(`${process.env.REACT_APP_API_URL}/blogs`, {
-      responseType: "json",
-    });
+    romsRes = await axios.get(
+      `${process.env.REACT_APP_API_URL}/blogs?key=THISISSECRET`,
+      {
+        responseType: "json",
+      }
+    );
   } catch (error) {
     console.log(error.message);
-    romsRes = await axios.get(`${process.env.REACT_APP_API_URL}/blogs`, {
-      responseType: "json",
-    });
+    romsRes = await axios.get(
+      `${process.env.REACT_APP_API_URL}/blogs?key=THISISSECRET`,
+      {
+        responseType: "json",
+      }
+    );
   }
 
   const blogs = romsRes.data.data;

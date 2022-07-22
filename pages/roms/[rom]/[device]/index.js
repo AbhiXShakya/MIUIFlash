@@ -57,13 +57,13 @@ export async function getStaticProps(context) {
 
   try {
     portsRes = await axios.get(
-      `${process.env.REACT_APP_API_URL}/miuiroms/${rom}/${device}`,
+      `${process.env.REACT_APP_API_URL}/miuiroms/${rom}/${device}?key=THISISSECRET`,
       { responseType: "json" }
     );
   } catch (error) {
     console.log(error.message);
     portsRes = await axios.get(
-      `${process.env.REACT_APP_API_URL}/miuiroms/${rom}/${device}`,
+      `${process.env.REACT_APP_API_URL}/miuiroms/${rom}/${device}?key=THISISSECRET`,
       { responseType: "json" }
     );
   }
@@ -90,14 +90,20 @@ export async function getStaticProps(context) {
 export async function getStaticPaths() {
   let romsRes = {};
   try {
-    romsRes = await axios.get(`${process.env.REACT_APP_API_URL}/roms`, {
-      responseType: "json",
-    });
+    romsRes = await axios.get(
+      `${process.env.REACT_APP_API_URL}/roms?key=THISISSECRET`,
+      {
+        responseType: "json",
+      }
+    );
   } catch (error) {
     console.log(error.message);
-    romsRes = await axios.get(`${process.env.REACT_APP_API_URL}/roms`, {
-      responseType: "json",
-    });
+    romsRes = await axios.get(
+      `${process.env.REACT_APP_API_URL}/roms?key=THISISSECRET`,
+      {
+        responseType: "json",
+      }
+    );
   }
 
   const roms = romsRes.data.data;

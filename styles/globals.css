@@ -141,9 +141,13 @@
     @apply text-2xl font-bold mb-4;
   }
 
+  .blog a {
+    @apply text-orange-500 dark:text-orange-300 hover:underline;
+  }
+
   .blog ul,
   .blog ol {
-    @apply ml-4 mb-10 -mt-4;
+    @apply ml-4 mb-10 -mt-2;
   }
 
   .customlist ol {
@@ -165,7 +169,7 @@
   }
 
   .customlist ul {
-    padding-left: 20px;
+    padding-left: 10px;
   }
 
   .customlist ul li::before {

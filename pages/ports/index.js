@@ -27,14 +27,20 @@ export default function Ports({ data }) {
 export async function getStaticProps() {
   let res = {};
   try {
-    res = await axios.get(`${process.env.REACT_APP_API_URL}/devices`, {
-      responseType: "json",
-    });
+    res = await axios.get(
+      `${process.env.REACT_APP_API_URL}/devices?key=THISISSECRET`,
+      {
+        responseType: "json",
+      }
+    );
   } catch (error) {
     console.log(error.message);
-    res = await axios.get(`${process.env.REACT_APP_API_URL}/devices`, {
-      responseType: "json",
-    });
+    res = await axios.get(
+      `${process.env.REACT_APP_API_URL}/devices?key=THISISSECRET`,
+      {
+        responseType: "json",
+      }
+    );
   }
 
   const data = res.data.data;

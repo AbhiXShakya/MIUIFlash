@@ -40,7 +40,7 @@ export async function getStaticProps({ params }) {
   let res = {};
   try {
     res = await axios.get(
-      `${process.env.REACT_APP_API_URL}/miuiupdates/devices/${deviceId}`,
+      `${process.env.REACT_APP_API_URL}/miuiupdates/devices/${deviceId}?key=THISISSECRET`,
       {
         responseType: "json",
       }
@@ -48,7 +48,7 @@ export async function getStaticProps({ params }) {
   } catch (error) {
     console.log(error.message);
     res = await axios.get(
-      `${process.env.REACT_APP_API_URL}/miuiupdates/devices/${deviceId}`,
+      `${process.env.REACT_APP_API_URL}/miuiupdates/devices/${deviceId}?key=THISISSECRET`,
       {
         responseType: "json",
       }
@@ -64,7 +64,7 @@ export async function getStaticPaths() {
   let res = {};
   try {
     res = await axios.get(
-      `${process.env.REACT_APP_API_URL}/miuiupdates/devices`,
+      `${process.env.REACT_APP_API_URL}/miuiupdates/devices?key=THISISSECRET`,
       {
         responseType: "json",
       }
@@ -72,7 +72,7 @@ export async function getStaticPaths() {
   } catch (error) {
     console.log(error.message);
     res = await axios.get(
-      `${process.env.REACT_APP_API_URL}/miuiupdates/devices`,
+      `${process.env.REACT_APP_API_URL}/miuiupdates/devices?key=THISISSECRET`,
       {
         responseType: "json",
       }

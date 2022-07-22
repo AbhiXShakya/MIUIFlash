@@ -9,6 +9,7 @@ import {
   animateUp,
   easing,
 } from "../../../../utils/helpers";
+import { marked } from "marked";
 
 const Rom = ({ rom, device, ports }) => {
   const breadcrumbs = [
@@ -37,10 +38,11 @@ const Rom = ({ rom, device, ports }) => {
         </motion.div>
         <motion.div variants={animateUp}>
           <Breadcrumbs breadm={breadcrumbs} />
-          <p>
-            All {rom?.name} Ported Roms for {titleCase(device?.name)} (
-            {parseCodename(device?.codename)}) are listed below
-          </p>
+          <motion.div className="blog customlist">
+            <div
+              dangerouslySetInnerHTML={{ __html: marked(rom?.description) }}
+            ></div>
+          </motion.div>
         </motion.div>
       </div>
       <PortCards ports={ports} device={device} rom={rom} type="ports" />
@@ -56,13 +58,13 @@ export async function getStaticProps(context) {
 
   try {
     portsRes = await axios.get(
-      `${process.env.REACT_APP_API_URL}/miuiroms/${rom}/${device}`,
+      `${process.env.REACT_APP_API_URL}/miuiroms/${rom}/${device}?key=THISISSECRET`,
       { responseType: "json" }
     );
   } catch (error) {
     console.log(error.message);
     portsRes = await axios.get(
-      `${process.env.REACT_APP_API_URL}/miuiroms/${rom}/${device}`,
+      `${process.env.REACT_APP_API_URL}/miuiroms/${rom}/${device}?key=THISISSECRET`,
       { responseType: "json" }
     );
   }
@@ -89,14 +91,20 @@ export async function getStaticProps(context) {
 export async function getStaticPaths() {
   let romsRes = {};
   try {
-    romsRes = await axios.get(`${process.env.REACT_APP_API_URL}/roms`, {
-      responseType: "json",
-    });
+    romsRes = await axios.get(
+      `${process.env.REACT_APP_API_URL}/roms?key=THISISSECRET`,
+      {
+        responseType: "json",
+      }
+    );
   } catch (error) {
     console.log(error.message);
-    romsRes = await axios.get(`${process.env.REACT_APP_API_URL}/roms`, {
-      responseType: "json",
-    });
+    romsRes = await axios.get(
+      `${process.env.REACT_APP_API_URL}/roms?key=THISISSECRET`,
+      {
+        responseType: "json",
+      }
+    );
   }
 
   const roms = romsRes.data.data;

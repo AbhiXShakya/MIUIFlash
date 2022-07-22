@@ -47,7 +47,7 @@ export async function getStaticProps(context) {
 
   try {
     romsRes = await axios.get(
-      `${process.env.REACT_APP_API_URL}/roms/${device}`,
+      `${process.env.REACT_APP_API_URL}/roms/${device}?key=THISISSECRET`,
       {
         responseType: "json",
       }
@@ -55,7 +55,7 @@ export async function getStaticProps(context) {
   } catch (error) {
     console.log(error.message);
     romsRes = await axios.get(
-      `${process.env.REACT_APP_API_URL}/roms/${device}`,
+      `${process.env.REACT_APP_API_URL}/roms/${device}?key=THISISSECRET`,
       {
         responseType: "json",
       }
@@ -82,14 +82,20 @@ export async function getStaticProps(context) {
 export async function getStaticPaths() {
   let res = {};
   try {
-    res = await axios.get(`${process.env.REACT_APP_API_URL}/devices`, {
-      responseType: "json",
-    });
+    res = await axios.get(
+      `${process.env.REACT_APP_API_URL}/devices?key=THISISSECRET`,
+      {
+        responseType: "json",
+      }
+    );
   } catch (error) {
     console.log(error.message);
-    res = await axios.get(`${process.env.REACT_APP_API_URL}/devices`, {
-      responseType: "json",
-    });
+    res = await axios.get(
+      `${process.env.REACT_APP_API_URL}/devices?key=THISISSECRET`,
+      {
+        responseType: "json",
+      }
+    );
   }
   const devices = res.data.data;
 
