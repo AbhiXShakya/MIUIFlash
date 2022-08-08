@@ -13,7 +13,7 @@ export default function FourOhFour() {
       </div>
       <div className="relative w-full h-20 md:h-44">
         <div className="absolute mt-2 md:mt-16 md:mb-16 translate-x-1/2 right-1/2">
-          <LinkButton Button txt="Go Home" href="/" />
+          <LinkButton txt="Go Home" href="/" />
         </div>
       </div>
     </>
