@@ -46,17 +46,20 @@ export function Footer() {
                 </Link>
               </li>
               <li className="mb-4">
-                <Link href="/ports" className="hover:underline">
+                <Link href="/roms" className="hover:underline">
                   ROMs
                 </Link>
               </li>
               <li className="mb-4">
-                <Link href="/ports" className="hover:underline">
+                <Link href="/miuiupdates" className="hover:underline">
                   MIUI Updates
                 </Link>
               </li>
               <li className="mb-4">
-                <Link href="/ports" className="hover:underline">
+                <Link
+                  href="https://blog.miuiflash.com"
+                  className="hover:underline"
+                >
                   Blog
                 </Link>
               </li>
@@ -66,28 +69,53 @@ export function Footer() {
             <h2 className="mb-6 text-lg font-bold ">Follow us</h2>
             <ol className="dark:text-gray-300 text-gray-600">
               <li className="mb-4">
-                <a href="https://github.com/" className="hover:underline ">
+                <a
+                  href="https://telegram.me/miuiflash"
+                  className="hover:underline "
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
                   Telegram Channel
                 </a>
               </li>
-              <li className="mb-4">
-                <a href="https://github.com/" className="hover:underline ">
+              {/* <li className="mb-4">
+                <a
+                  href="https://telegram.me/miuiflashers"
+                  className="hover:underline "
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
                   Telegram Group
                 </a>
-              </li>
+              </li> */}
               <li className="mb-4">
-                <a href="" className="hover:underline">
+                <a
+                  href="https://twitter.com/miuiflash"
+                  className="hover:underline"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
                   Twitter
                 </a>
               </li>
               <li className="mb-4">
-                <a href="https://github.com/" className="hover:underline ">
+                <a
+                  href="https://instagram.com/miuiflash"
+                  className="hover:underline "
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
                   Instagram
                 </a>
               </li>
               <li className="mb-4">
-                <a href="https://github.com/" className="hover:underline ">
-                  GitHub
+                <a
+                  href="https://facebook.com/MIUIFlash"
+                  className="hover:underline "
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
+                  Facebook
                 </a>
               </li>
             </ol>
@@ -96,27 +124,47 @@ export function Footer() {
             <h2 className="mb-6 text-lg font-bold ">Legal</h2>
             <ol className="dark:text-gray-300 text-gray-600">
               <li className="mb-4">
-                <a href="#" className="hover:underline">
+                <a
+                  href="https://blog.miuiflash.com/privacy-policy"
+                  className="hover:underline"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
                   Privacy Policy
                 </a>
               </li>
-              <li className="mb-4">
+              {/* <li className="mb-4">
                 <a href="#" className="hover:underline">
                   Terms &amp; Conditions
                 </a>
-              </li>
+              </li> */}
               <li className="mb-4">
-                <a href="#" className="hover:underline">
+                <a
+                  href="https://blog.miuiflash.com/dmca"
+                  className="hover:underline"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
                   DMCA
                 </a>
               </li>
               <li className="mb-4">
-                <a href="#" className="hover:underline">
+                <a
+                  href="https://blog.miuiflash.com/about-us"
+                  className="hover:underline"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
                   About Us
                 </a>
               </li>
               <li className="mb-4">
-                <a href="#" className="hover:underline">
+                <a
+                  href="https://blog.miuiflash.com/contact-us/"
+                  className="hover:underline"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
                   Contact Us
                 </a>
               </li>

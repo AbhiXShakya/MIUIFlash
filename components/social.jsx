@@ -2,8 +2,10 @@ export function Social() {
   return (
     <div className="flex mt-4 space-x-6 sm:justify-center sm:mt-0">
       <a
-        href="#"
+        href="https://telegram.me/miuiflash"
         className="dark:text-gray-500 hover:dark:text-gray-600 text-gray-900"
+        target="_blank"
+        rel="noreferrer noopener"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -18,8 +20,10 @@ export function Social() {
         </svg>
       </a>
       <a
-        href="#"
+        href="https://facebook.com/MIUIFlash"
         className="dark:text-gray-500 hover:dark:text-gray-600 text-gray-900"
+        target="_blank"
+        rel="noreferrer noopener"
       >
         <svg
           className="w-5 h-5"
@@ -35,8 +39,10 @@ export function Social() {
         </svg>
       </a>
       <a
-        href="#"
+        href="https://instagram.com/miuiflash"
         className="dark:text-gray-500 hover:dark:text-gray-600 text-gray-900"
+        target="_blank"
+        rel="noreferrer noopener"
       >
         <svg
           className="w-5 h-5"
@@ -52,8 +58,10 @@ export function Social() {
         </svg>
       </a>
       <a
-        href="#"
+        href="https://twitter.com/miuiflash"
         className="dark:text-gray-500 hover:dark:text-gray-600 text-gray-900"
+        target="_blank"
+        rel="noreferrer noopener"
       >
         <svg
           className="w-5 h-5"
@@ -65,8 +73,10 @@ export function Social() {
         </svg>
       </a>
       <a
-        href="#"
+        href="https://github.com/AbhiXShakya/MIUIFlash"
         className="dark:text-gray-500 hover:dark:text-gray-600 text-gray-900"
+        target="_blank"
+        rel="noreferrer noopener"
       >
         <svg
           className="w-5 h-5"

@@ -1,19 +1,22 @@
 export default async function handler(req, res) {
-  if (req.body.secret !== process.env.MY_SECRET_TOKEN) {
-    return res.status(401).json({ message: "Invalid token" });
+  if (
+    req.body.username !== "iamsupermod" ||
+    req.body.password !== "iamsuperthemod"
+  ) {
+    res.status(401).json({ error: "Unauthorized" });
   }
 
-  try {
-    // this should be the actual path not a rewritten path
-    // e.g. for "/blog/[slug]" this should be "/blog/post-1"
-    const urls = req.body.urls;
-    for (let i = 0; i < urls.length; i++) {
-      const url = urls[i];
+  const urls = req.body.urls;
+  res.json({ revalidated: true });
+  for (let i = 0; i < urls.length; i++) {
+    const url = urls[i];
+    try {
       await res.revalidate(url);
+      console.log("Revalidated: " + url);
+    } catch (err) {
+      console.log("Failed to revalidate: " + url);
     }
-
-    return res.json({ revalidated: true });
-  } catch (err) {
-    return res.status(500).send("Error revalidating");
   }
+
+  return;
 }

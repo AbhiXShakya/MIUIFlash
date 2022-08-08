@@ -603,7 +603,7 @@ export const MiuiUpdateDevices = ({ data }) => {
               notFound
                 ? "ring-2 ring-red-500 hover:ring-2 focus:ring-2 active:ring-2 hover:ring-red-500 focus:ring-red-500 active:ring-red-500"
                 : "ring-1 ring-gray-300 hover:ring-1 focus:ring-1 active:ring-1 hover:ring-orange-500 focus:ring-orange-500 active:ring-orange-500"
-            } outline-none w-full md:max-w-[20.1rem] rounded-md py-1 px-2`}
+            } outline-none w-full md:max-w-[20.1rem] rounded-md py-1 px-2 dark:bg-black`}
             type="text"
             placeholder="Search"
             value={searchTerm}
@@ -819,7 +819,7 @@ export const MiuiDevices = ({ data }) => {
               notFound
                 ? "ring-2 ring-red-500 hover:ring-2 focus:ring-2 active:ring-2 hover:ring-red-500 focus:ring-red-500 active:ring-red-500"
                 : "ring-1 ring-gray-300 hover:ring-1 focus:ring-1 active:ring-1 hover:ring-orange-500 focus:ring-orange-500 active:ring-orange-500"
-            } outline-none w-full md:max-w-[20.1rem] rounded-md py-1 px-2`}
+            } outline-none w-full md:max-w-[20.1rem] rounded-md py-1 px-2 dark:bg-black`}
             type="text"
             placeholder="Search"
             value={searchTerm}
@@ -1049,7 +1049,7 @@ export const DeviceUpdatedRoms = ({ data, device }) => {
               notFound
                 ? "ring-2 ring-red-500 hover:ring-2 focus:ring-2 active:ring-2 hover:ring-red-500 focus:ring-red-500 active:ring-red-500"
                 : "ring-1 ring-gray-300 hover:ring-1 focus:ring-1 active:ring-1 hover:ring-orange-500 focus:ring-orange-500 active:ring-orange-500"
-            } outline-none w-full md:max-w-[20.1rem] rounded-md py-1 px-2`}
+            } outline-none w-full md:max-w-[20.1rem] rounded-md py-1 px-2 dark:bg-black`}
             type="text"
             placeholder="Search"
             value={searchTerm}

@@ -87,7 +87,7 @@ export function Navbar({ dark, setDark }) {
                 router.pathname.includes("/about") ? "currentLink" : ""
               }
             >
-              <Link href="/blog">Blog</Link>
+              <Link href="https://blog.miuiflash.com">Blog</Link>
             </li>
           </ol>
           <div className="flex justify-center w-full mt-9">
@@ -144,7 +144,7 @@ export function Navbar({ dark, setDark }) {
                 router.pathname.includes("/about") ? "currentLink" : ""
               }
             >
-              <Link href="/blog">Blog</Link>
+              <Link href="https://blog.miuiflash.com">Blog</Link>
             </li>
             <div
               style={{ originX: "50%", originY: "50%" }}
